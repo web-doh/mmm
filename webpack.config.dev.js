@@ -11,7 +11,6 @@ module.exports = {
   },
 
   devServer: {
-    open: true,
     hot: true,
     filename: "bundle.js",
     publicPath: "/",

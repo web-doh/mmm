@@ -16,8 +16,7 @@ import "./config/mongoose";
 import WebpackDevServer from "webpack-dev-server";
 import webpack from "webpack";
 
-// import indexRouter from "./routes/index";
-// import usersRouter from "./routes/users";
+import authRouter from "./routes/account/account";
 
 const port = process.env.PORT || 3000;
 
@@ -29,7 +28,7 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 
 app.use(express.static("public"));
-// app.use("/users", usersRouter);
+app.use("/account", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
