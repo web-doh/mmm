@@ -1,7 +1,7 @@
 import { model, Schema, Types } from "mongoose";
 
 const User = new Schema({
-  email: {
+  userId: {
     type: String,
     trim: true,
     lowercase: true,

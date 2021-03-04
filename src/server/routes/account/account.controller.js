@@ -1,21 +1,22 @@
 import User from "../../models/user";
 import * as bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 /* 
   POST /account/signup 
   {
-      email,
+      userId,
       username,
       password
   }
 */
 
 const createUser = async (userInput) => {
-  const { email, username, password } = userInput;
+  const { userId, username, password } = userInput;
   const hashedPwd = await hashPassword(password);
 
   const user = new User({
-    email,
+    userId,
     username,
     password: hashedPwd,
   });
@@ -43,10 +44,10 @@ const assignAdmin = (user, count) => {
   }
 };
 
-const respond = (isAdmin, res) => {
-  res.json({
-    message: "created successfully",
-    admin: isAdmin ? true : false,
+const respond = (res, message, admin) => {
+  res.status(201).json({
+    message,
+    admin,
   });
 };
 
@@ -58,17 +59,83 @@ const errorGenerator = (message, statusCode = 500) => {
 
 export const signUp = async (req, res, next) => {
   try {
-    const { email } = req.body;
-    const user = await User.findOne({ email });
+    const { userId } = req.body;
+    const user = await User.findOne({ userId });
     if (user) {
-      errorGenerator("이미 가입한 이메일 주소입니다. 다시 입력해 주세요.", 404);
+      errorGenerator("이미 가입한 아이디입니다. 다시 입력해 주세요.", 404);
     }
 
     const newUser = await createUser(req.body);
     const number = await count();
     const admin = await assignAdmin(newUser, number);
-    const response = await respond(admin, res);
+    const response = await respond(res, "created successfully", newUser.admin);
   } catch (err) {
+    next(err);
+  }
+};
+
+/* 
+  POST /account/login 
+  {
+      userId,
+      password
+  }
+*/
+
+const createToken = (user) => {
+  const payload = {
+    _id: user._id,
+    userId: user.userId,
+    admin: user.admin,
+  };
+
+  const token = new Promise((resolve, reject) => {
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: "7d",
+        subject: "userInfo",
+      },
+      (err, token) => {
+        if (err) reject(err);
+        resolve(token);
+      }
+    );
+  });
+
+  return token;
+};
+
+const verifyPwd = async (password1, password2) => {
+  const check = await bcrypt.compare(password1, password2);
+  return check;
+};
+
+export const login = async (req, res, next) => {
+  try {
+    const { userId = null, password = null } = req.body;
+    if (!userId || !password)
+      errorGenerator("아이디와 비밀번호를 모두 입력해 주세요.", 400);
+
+    const user = await User.findOne({ userId });
+
+    if (!user) {
+      errorGenerator("존재하지 않는 아이디입니다. 다시 입력해 주세요.", 404);
+    }
+
+    const verifying = await verifyPwd(password, user.password);
+    if (!verifying) {
+      errorGenerator("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.", 404);
+    }
+
+    const token = await createToken(user);
+    const respond = await res
+      .status(201)
+      .json({ message: "login successfully", token });
+  } catch (err) {
+    console.log("login failed!", err);
+
     next(err);
   }
 };

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { signUp } from "./account.controller";
+import { signUp, login } from "./account.controller";
 
 const authRouter = Router();
 
@@ -15,9 +15,7 @@ authRouter
   .get((req, res) => {
     res.json({ info: null });
   })
-  .post((req, res) => {
-    res.json({ success: true });
-  });
+  .post(login);
 
 authRouter.route("/logout").post((req, res) => {
   res.json({ success: true });
