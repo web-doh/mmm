@@ -1,0 +1,68 @@
+@value mainFont,fontTiny,fontSmall,fontRegular,fontMedium,fontLarge,fontBig,fontHuge,weightLight,weightRegular,weightMedium,weightBold,weightExtraBold,borderRadius from '/common/size.css';
+@value makerBlack,makerDarkG,makerGray from '/common/colors.css';
+
+body,
+html {
+  font-family: mainFont;
+}
+
+/* Typography */
+h1 {
+  font-size: fontHuge;
+  font-weight: weightExtraBold;
+  color: makerBlack;
+  margin: 0.5rem 0;
+}
+
+h2 {
+  font-size: fontBig;
+  font-weight: weightExtraBold;
+  color: makerBlack;
+  margin: 0.5rem 0;
+}
+
+h3 {
+  font-size: fontLarge;
+  font-weight: weightBold;
+  color: makerBlack;
+  margin: 0.5rem 0;
+}
+
+h4 {
+  font-size: fontMedium;
+  font-weight: weightMedium;
+  color: makerBlack;
+  margin: 0.5rem 0;
+}
+
+p {
+  font-size: fontRegular;
+  font-weight: weightRegular;
+  color: makerBlack;
+  margin: 0.25rem 0;
+}
+
+span {
+  font-size: fontSmall;
+  font-weight: weightRegular;
+  color: makerDarkG;
+  margin: 0.125rem 0;
+}
+
+input::placeholder,
+textarea::placeholder {
+  font-family: mainFont;
+  font-size: fontSmall;
+  font-weight: weightRegular;
+  color: makerGray;
+}
+
+textarea {
+  font-family: mainFont;
+  font-size: fontSmall;
+  color: makerBlack;
+}
+
+button {
+  font-family: mainFont;
+}
