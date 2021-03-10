@@ -1,9 +1,29 @@
+import dotenv from "dotenv";
 import path from "path";
 import webpack from "webpack";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+dotenv.config();
+
+function getClientEnv() {
+  return {
+    "process.env": JSON.stringify(
+      Object.keys(process.env)
+        .filter((key) => /^REACT_APP/i.test(key))
+        .reduce(
+          (env, key) => {
+            env[key] = process.env[key];
+            return env;
+          },
+          { NODE_ENV: "development" }
+        )
+    ),
+  };
+}
+
+const clientEnv = getClientEnv();
 
 module.exports = {
-  entry: ["./src/client/index.js"],
+  entry: ["./src/client/index.js", "./src/client/index.module.css"],
   output: {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js",
@@ -16,7 +36,7 @@ module.exports = {
     publicPath: "/",
     contentBase: "/dist/",
     proxy: {
-      "**": "http://localhost:3000",
+      "**": "http://localhost:3001",
     },
     port: 4000,
     stats: {
@@ -52,6 +72,7 @@ module.exports = {
             loader: "css-loader",
             options: {
               importLoaders: 1,
+              modules: true
             },
           },
           {
@@ -66,6 +87,18 @@ module.exports = {
             loader: "html-loader",
             options: {
               minimize: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "static/media",
+              name: "[name].[hash:8].[ext]",
             },
           },
         ],
@@ -86,6 +119,10 @@ module.exports = {
       template: "./public/index.html",
       filename: "index.html",
     }),
+    // new webpack.ProvidePlugin({
+    //   process: "process/browser",
+    // }),
+    new webpack.DefinePlugin(clientEnv),
   ],
 
   devtool: "eval-cheap-source-map",

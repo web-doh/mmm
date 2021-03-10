@@ -3,8 +3,26 @@ import webpack from "webpack";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+function getClientEnv() {
+  return {
+    "process.env": JSON.stringify(
+      Object.keys(process.env)
+        .filter((key) => /^REACT_APP/i.test(key))
+        .reduce(
+          (env, key) => {
+            env[key] = process.env[key];
+            return env;
+          },
+          { NODE_ENV: "production" }
+        )
+    ),
+  };
+}
+
+const clientEnv = getClientEnv();
+
 module.exports = {
-  entry: ["./src/client/index.js"],
+  entry: ["./src/client/index.js", "./src/client/index.module.css"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -36,6 +54,7 @@ module.exports = {
             loader: "css-loader",
             options: {
               importLoaders: 1,
+              modules: true,
             },
           },
           {
@@ -43,14 +62,24 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "static/media",
+              name: "[name].[hash:8].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
 
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("production"),
-      },
+    new webpack.ProvidePlugin({
+      process: "process/browser",
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

@@ -18,7 +18,7 @@ import webpack from "webpack";
 
 import authRouter from "./routes/account/account";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 const app = express();
 

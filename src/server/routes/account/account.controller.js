@@ -126,7 +126,7 @@ export const login = async (req, res, next) => {
 
     const verifying = await verifyPwd(password, user.password);
     if (!verifying) {
-      errorGenerator("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.", 404);
+      errorGenerator("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.", 403.11);
     }
 
     const token = await createToken(user);
