@@ -1,44 +1,43 @@
 @value mainFont,fontTiny,fontSmall,fontRegular,fontMedium,fontLarge,fontBig,fontHuge,weightLight,weightRegular,weightMedium,weightBold,weightExtraBold,borderRadius from '/common/size.css';
 @value makerBlack,makerDarkG,makerGray from '/common/colors.css';
 
-body,
-html {
+body {
   font-family: mainFont;
+  color: makerBlack;
 }
 
 /* Typography */
 h1 {
   font-size: fontHuge;
   font-weight: weightExtraBold;
-  color: makerBlack;
+
   margin: 0.5rem 0;
 }
 
 h2 {
   font-size: fontBig;
   font-weight: weightExtraBold;
-  color: makerBlack;
+
   margin: 0.5rem 0;
 }
 
 h3 {
   font-size: fontLarge;
   font-weight: weightBold;
-  color: makerBlack;
   margin: 0.5rem 0;
 }
 
 h4 {
   font-size: fontMedium;
-  font-weight: weightMedium;
-  color: makerBlack;
+  font-weight: weightBold;
+
   margin: 0.5rem 0;
 }
 
 p {
   font-size: fontRegular;
-  font-weight: weightRegular;
-  color: makerBlack;
+  font-weight: weightMedium;
+
   margin: 0.25rem 0;
 }
 
@@ -60,7 +59,6 @@ textarea::placeholder {
 textarea {
   font-family: mainFont;
   font-size: fontSmall;
-  color: makerBlack;
 }
 
 button {

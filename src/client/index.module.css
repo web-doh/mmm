@@ -1,3 +1,9 @@
-@import './common/reset.css';
-@import './common/common.css';
+@import "./common/reset.css";
+@import "./common/common.css";
+@value mediaMobile from './common/size.css';
 
+@media screen and (max-width: mediaMobile) {
+  html {
+    font-size: 14px;
+  }
+}

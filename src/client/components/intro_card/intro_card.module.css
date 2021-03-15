@@ -1,0 +1,167 @@
+@value makerBlack, makerOrange, makerRed, makerGreen, makerYellow, makerPink, makerPurple, makerBigShadow, makerShadow from '../../common/colors.css';
+@value borderRadius, fontMedium, weightBold, mediaQuery, mediaMobile from '../../common/size.css';
+
+.item {
+  width: 24rem;
+  flex: 1 0 14.4rem;
+  margin: 0.75rem auto;
+  perspective: 12000px;
+}
+
+.content {
+  height: 14.4rem;
+}
+
+.noContent {
+  height: 7.2rem;
+  flex: 1 0 7.2rem;
+}
+
+.flipper {
+  position: relative;
+
+  transition: all 600ms ease-out;
+  transform-style: preserve-3d;
+}
+
+.content .flipper {
+  padding-top: 60%;
+}
+
+.noContent .flipper {
+  padding-top: 30%;
+}
+
+.front {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateX(0deg);
+}
+
+.back {
+  transform: rotateX(-180deg);
+}
+
+.front,
+.back,
+.blank {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  filter: makerBigShadow;
+  box-shadow: 0.125rem 0.25rem 0.5rem makerShadow;
+  backface-visibility: hidden;
+}
+
+.front:hover,
+.back:hover {
+  cursor: pointer;
+}
+
+.content:hover .flipper {
+  transform: rotateX(-180deg);
+  transform-origin: center;
+}
+
+.yellow {
+  background-color: makerYellow;
+}
+
+.pink {
+  background-color: makerPink;
+}
+
+.purple {
+  background-color: makerPurple;
+}
+
+.orange {
+  background-color: makerOrange;
+  border-top: none;
+  border-radius: 0 0 borderRadius borderRadius;
+}
+
+.green {
+  background-color: makerGreen;
+  border-bottom: none;
+  border-radius: borderRadius borderRadius 0 0;
+  filter: none;
+}
+
+@media screen and (max-width: mediaQuery) and (min-width: mediaMobile) {
+  .item {
+    height: 14.4rem;
+    margin-right: 1rem;
+  }
+
+  .content {
+    flex: 1 0 42.5%;
+    min-width: 22.5rem;
+  }
+
+  .noContent {
+    width: 12rem;
+    flex: 1 0 21.25%;
+    min-width: 11.25rem;
+  }
+
+  .noContent .flipper {
+    padding-top: 120%;
+  }
+
+  .orange {
+    border-top: 2px solid makerBlack;
+    border-left: none;
+    border-radius: 0 borderRadius borderRadius 0;
+  }
+
+  .green {
+    border-bottom: 2px solid makerBlack;
+    border-right: none;
+    border-radius: borderRadius 0 0 borderRadius;
+    filter: makerBigShadow;
+  }
+}
+
+@media screen and (max-width: mediaMobile) {
+  .item {
+    height: 14.4rem;
+    margin-right: 1rem;
+  }
+
+  .content {
+    flex: 1 0 95%;
+    min-width: 18rem;
+  }
+
+  .noContent {
+    width: 12rem;
+    flex: 1 0 47.5%;
+    min-width: 9rem;
+  }
+
+  .noContent .flipper {
+    padding-top: 120%;
+  }
+
+  .orange {
+    border-top: 2px solid makerBlack;
+    border-left: none;
+    border-radius: 0 borderRadius borderRadius 0;
+  }
+
+  .green {
+    border-bottom: 2px solid makerBlack;
+    border-right: none;
+    border-radius: borderRadius 0 0 borderRadius;
+    filter: makerBigShadow;
+  }
+}

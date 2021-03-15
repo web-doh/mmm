@@ -72,7 +72,18 @@ module.exports = {
             loader: "css-loader",
             options: {
               importLoaders: 1,
-              modules: true
+              modules: {
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+                // getLocalIdent: (
+                //   context,
+                //   localIdentName,
+                //   localName,
+                //   options
+                // ) => {
+                //   console.log(localIdentName, localName, options);
+                //   return localIdentName.replace('-module', '');
+                // },
+              },
             },
           },
           {

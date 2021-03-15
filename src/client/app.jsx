@@ -1,8 +1,20 @@
 import { useEffect } from "react";
-import "./app.module.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import styles from "./app.module.css";
+import Home from "./pages/home/home";
 
 const App = () => {
-  return <h1>Hello!</h1>;
+  return (
+    <div className={styles.app}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
+  );
 };
 
 export default App;

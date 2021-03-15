@@ -1,0 +1,56 @@
+@value makerBlack, makerWhite, makerShadow from '../../common/colors.css';
+@value borderRadius, fontMedium, weightBold from '../../common/size.css';
+
+.button {
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 0.75rem;
+  margin: 1.25rem 0;
+  border: solid 2px makerBlack;
+  border-bottom: 4px solid makerBlack;
+  border-radius: borderRadius;
+  font-size: fontMedium;
+  font-weight: weightBold;
+  color: makerBlack;
+  overflow: hidden;
+  z-index: 2;
+  transition: transform 300ms ease-in-out;
+}
+
+.button::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: borderRadius;
+  z-index: -1;
+  transform: translate(-100%, 0) rotate(10deg);
+  transform-origin: bottom left;
+  transition: transform 300ms ease-out;
+}
+
+.button:hover::after {
+  background-color: makerBlack;
+  transform: translate(0, 0);
+}
+
+.button:hover {
+  border: 2px solid transparent;
+  border-bottom: 4px solid transparent;
+  color: makerWhite;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: mediaQuery) {
+  .containers {
+    flex-direction: column;
+  }
+
+  .logo {
+    width: 12.5rem;
+  }
+}
