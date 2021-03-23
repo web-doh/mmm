@@ -25,9 +25,8 @@ const clientEnv = getClientEnv();
 module.exports = {
   entry: ["./src/client/index.js", "./src/client/index.module.css"],
   output: {
-    path: path.join(__dirname, "dist"),
+    path: "/",
     filename: "bundle.js",
-    publicPath: "/",
   },
 
   devServer: {
@@ -48,7 +47,9 @@ module.exports = {
       timings: false,
       chunks: false,
       chunkModules: false,
+      children: true,
     },
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -74,15 +75,6 @@ module.exports = {
               importLoaders: 1,
               modules: {
                 localIdentName: "[name]__[local]--[hash:base64:5]",
-                // getLocalIdent: (
-                //   context,
-                //   localIdentName,
-                //   localName,
-                //   options
-                // ) => {
-                //   console.log(localIdentName, localName, options);
-                //   return localIdentName.replace('-module', '');
-                // },
               },
             },
           },
@@ -91,17 +83,7 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: {
-              minimize: true,
-            },
-          },
-        ],
-      },
+
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [

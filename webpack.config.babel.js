@@ -2,6 +2,8 @@ import path from "path";
 import webpack from "webpack";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TerserJSPlugin = require("terser-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 function getClientEnv() {
   return {
@@ -24,7 +26,7 @@ const clientEnv = getClientEnv();
 module.exports = {
   entry: ["./src/client/index.js", "./src/client/index.module.css"],
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "public"),
     filename: "bundle.js",
   },
   resolve: {
@@ -77,18 +79,25 @@ module.exports = {
     ],
   },
 
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
+  },
+
   plugins: [
     new webpack.ProvidePlugin({
       process: "process/browser",
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: true,
-      },
-    }),
+
     new HtmlWebpackPlugin({
       template: "./public/index.html",
       filename: "index.html",
     }),
   ],
+
+  stats: {
+    children: true,
+  },
+
+  mode: "production",
 };
