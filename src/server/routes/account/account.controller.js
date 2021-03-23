@@ -3,12 +3,10 @@ import * as bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 /* 
-  POST /account/signup 
-  {
-      userId,
-      username,
-      password
-  }
+  ACCOUNT SIGNUP: POST /account/signup 
+  BODY SAMPLE: { "userId": "sample", "username": "sample", "password": "sample" }
+  ERROR CODES:
+        1: DUPLICATE USERID
 */
 
 const createUser = async (userInput) => {
@@ -44,42 +42,50 @@ const assignAdmin = (user, count) => {
   }
 };
 
-const respond = (res, message, admin) => {
-  res.status(201).json({
-    message,
-    admin,
+const respond = (res, user) => {
+  return res.status(201).json({
+    status: "success",
+    user,
   });
 };
 
-const errorGenerator = (message, statusCode = 500) => {
-  const error = new Error(message);
-  error.statusCode = statusCode;
-  throw error;
+const errorGenerator = (res, error, code, statusCode) => {
+  return res.status(statusCode).json({
+    status: "error",
+    error,
+    code,
+  });
 };
 
 export const signUp = async (req, res, next) => {
   try {
-    const { userId } = req.body;
+    const { userId, password1: password, username } = req.body;
+
+    // Check whether ID exists
     const user = await User.findOne({ userId });
     if (user) {
-      errorGenerator("이미 가입한 아이디입니다. 다시 입력해 주세요.", 404);
+      return errorGenerator(res, "DUPLICATE USERID", 1, 409);
     }
 
-    const newUser = await createUser(req.body);
+    // Create Account & Save to DB
+
+    const newUser = await createUser({ userId, password, username });
     const number = await count();
     const admin = await assignAdmin(newUser, number);
-    const response = await respond(res, "created successfully", newUser.admin);
+    const response = await respond(res, newUser);
+
+    return response;
   } catch (err) {
     next(err);
   }
 };
 
 /* 
-  POST /account/login 
-  {
-      userId,
-      password
-  }
+  ACCOUNT SIGNIN: POST /account/login 
+  BODY SAMPLE: { "userId": "sample", "password": "sample" }
+  ERROR CODES:
+        1: NO MATCHING USERID
+        2: WRONG PASSWORD
 */
 
 const createToken = (user) => {
@@ -115,24 +121,27 @@ const verifyPwd = async (password1, password2) => {
 export const login = async (req, res, next) => {
   try {
     const { userId = null, password = null } = req.body;
-    if (!userId || !password)
-      errorGenerator("아이디와 비밀번호를 모두 입력해 주세요.", 400);
 
+    // Check whether ID exists
     const user = await User.findOne({ userId });
 
     if (!user) {
-      errorGenerator("존재하지 않는 아이디입니다. 다시 입력해 주세요.", 404);
+      return errorGenerator(res, "NO MATCHING USERID", 1, 404);
     }
 
+    // Check whether password is valid
     const verifying = await verifyPwd(password, user.password);
     if (!verifying) {
-      errorGenerator("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.", 403.11);
+      return errorGenerator(res, "WRONG PASSWORD", 2, 403.11);
     }
 
+    // Create token
     const token = await createToken(user);
-    const respond = await res
-      .status(201)
-      .json({ message: "login successfully", token });
+    user["token"] = token;
+    // Return success response
+    const response = await respond(res, user);
+
+    return response;
   } catch (err) {
     console.log("login failed!", err);
 

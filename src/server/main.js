@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-
+import path from "path";
 import express, {
   Request,
   Response,
@@ -28,7 +28,12 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 
 app.use(express.static("public"));
+
 app.use("/account", authRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "..", "public", "index.html"));
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
