@@ -1,0 +1,31 @@
+@value fontHuge, sizeSmall, sizeRegular, sizeMedium, borderRadius from '../../common/size.css';
+@value makerWhite, makerBlack, makerBigShadow, makerShadow from '../../common/colors.css';
+
+.invisible {
+  display: none;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+}
+
+.number {
+  width: fontHuge;
+  height: fontHuge;
+  border-radius: 50%;
+  margin-right: sizeRegular;
+  background-color: makerBlack;
+  color: makerWhite;
+  text-align: center;
+  line-height: fontHuge;
+}
+
+.image {
+  width: 100%;
+  margin: sizeMedium 0;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  filter: makerBigShadow;
+  box-shadow: 0.125rem 0.25rem 0.5rem makerShadow;
+}

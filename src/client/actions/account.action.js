@@ -1,6 +1,5 @@
 import axios from "axios";
 import { loginState } from "../atoms/atoms";
-import history from "../lib/history";
 
 /* Register */
 export const requestRegister = async (userInfo) => {
@@ -40,5 +39,4 @@ export const requestLogin = async (userInfo) => {
 /* Logout */
 export const logout = () => {
   localStorage.removeItem("token");
-  // history.push("/");
 };

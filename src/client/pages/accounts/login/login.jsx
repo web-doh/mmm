@@ -33,8 +33,6 @@ const Login = (props) => {
 
       history.push("/"); //board로 수정할것
       setLoginUser({ _id, username, isAuthenticated: true });
-
-      return true;
     } else {
       const errorCode = response.data.code - 1;
 
@@ -50,8 +48,6 @@ const Login = (props) => {
       ];
 
       setError(errorMessage[errorCode]);
-
-      return false;
     }
   };
 

@@ -1,0 +1,13 @@
+@value fontSmall, weightBold from "../../common/size.css";
+@value makerRed from "../../common/colors.css";
+
+.button svg {
+  width: fontSmall;
+  height: fontSmall;
+  stroke-width: 3;
+}
+
+.clicked svg {
+  border-radius: 50%;
+  background-color: makerRed;
+}

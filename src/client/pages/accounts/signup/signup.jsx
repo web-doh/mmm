@@ -29,16 +29,12 @@ const Signup = (props) => {
         pathname: "/account/complete",
         state: { username: userInfo.username },
       });
-
-      return true;
     } else {
       /*  
       ERROR CODES:
             1: DUPLICATE USERID
       */
       setError("This email has already been signed up.");
-
-      return false;
     }
   };
 

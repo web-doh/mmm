@@ -1,0 +1,78 @@
+@value logoFont, weightBold, sizeLarge, mediaQuery from '../../../common/size.css';
+@value makerDarkY from '../../../common/colors.css';
+
+.containers {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  flex: 1 0 50%;
+  width: 100%;
+}
+
+.right {
+  height: 100%;
+  padding: sizeLarge;
+  background-color: makerDarkY;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.left,
+.contents {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left {
+  align-items: center;
+}
+
+.contents {
+  width: 70%;
+  min-width: 25rem;
+  max-width: 32rem;
+  align-items: center;
+}
+
+/* left contents*/
+.name {
+  margin-bottom: 1rem;
+  font-family: logoFont;
+  font-size: 3.5rem;
+  letter-spacing: 0.15rem;
+}
+
+.icon {
+  width: 12rem;
+}
+
+.greeting {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* right contents */
+.title {
+  width: 100%;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .right {
+    display: none;
+  }
+}
