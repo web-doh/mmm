@@ -1,0 +1,10 @@
+@value makerDarkG from '../../../common/colors.css';
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: makerDarkG;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

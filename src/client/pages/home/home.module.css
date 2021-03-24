@@ -1,0 +1,45 @@
+@value sizeLarge, mediaQuery from '../../common/size.css';
+
+.containers {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  flex: 1 0 50%;
+  width: 100%;
+  padding: sizeLarge;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.right {
+  height: 100%;
+  overflow: auto;
+}
+
+.logo {
+  width: 15rem;
+}
+
+.title b {
+  font-weight: 700;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .containers {
+    flex-direction: column;
+  }
+
+  .logo {
+    width: 12.5rem;
+  }
+}

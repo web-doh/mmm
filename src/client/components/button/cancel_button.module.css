@@ -1,0 +1,24 @@
+@value makerBlack, makerWhite, makerSmallShadow from '../../common/colors.css';
+@value fontBig, fontLarge, mediaMobile from '../../common/size.css';
+
+.xIcon {
+  width: fontBig;
+  height: fontBig;
+  border: 2px solid makerBlack;
+  border-radius: 50%;
+  background-color: makerWhite;
+  filter: makerSmallShadow;
+}
+
+.xIcon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: makerBlack;
+  transform: translate(-0.225rem, 0.125rem);
+}
+
+@media screen and (max-width: mediaMobile) {
+  .xIcon svg {
+    transform: translate(-0.3rem, 0.1rem);
+  }
+}

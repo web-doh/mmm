@@ -1,0 +1,27 @@
+@value makerDarkG, makerPink from '../../../common/colors.css';
+@value sizeRegular, weightBold from '../../../common/size.css';
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: makerDarkG;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.option {
+  width: 90%;
+  display: flex;
+  margin: sizeRegular;
+}
+
+.link {
+  color: makerPink;
+  margin-left: sizeRegular;
+}
+
+.link:hover {
+  cursor: pointer;
+  font-weight: weightBold;
+}

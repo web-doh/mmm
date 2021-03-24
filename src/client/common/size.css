@@ -1,5 +1,6 @@
 /* font style */
 @value mainFont: 'Montserrat', sans-serif;
+@value logoFont: 'Fugaz One', cursive;
 
 /* font size */
 @value fontTiny: 0.75rem;
@@ -7,18 +8,26 @@
 @value fontRegular: 1rem;
 @value fontMedium: 1.125rem;
 @value fontLarge: 1.75rem;
-@value fontBig: 2.25rem;
-@value fontHuge: 2.75rem;
+@value fontBig: 2rem;
+@value fontHuge: 2.25rem;
 
 /* font weigth */
 @value weightLight: 300;
 @value weightRegular: 400;
 @value weightMedium: 500;
 @value weightBold: 600;
-@value weightExtraBold: 800;
+@value weightExtraBold: 700;
+
+/* padding size */
+@value sizeSmall: .25rem;
+@value sizeRegular: .5rem;
+@value sizeMedium: 1rem;
+@value sizeLarge: 1.25rem;
 
 /* border radius */
 @value borderRadius: 16px;
 
 /* media query */
-@value mediaQuery: 62rem;
+@value mediaQuery: 992px;
+@value mediaMobile: 420px;
+/*  */

@@ -1,0 +1,52 @@
+@value makerBlack, makerWhite, makerLightYellow, makerBack  from '../../common/colors.css';
+@value sizeRegular,sizeMedium, weightMedium, weightExtraBold, borderRadius from '../../common/size.css';
+
+.container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: makerBack;
+}
+
+.window {
+  width: 16rem;
+  height: 10rem;
+  padding: sizeMedium;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  background-color: makerLightYellow;
+}
+
+.title {
+  font-weight: weightExtraBold;
+}
+
+.info {
+  font-weight: weightMedium;
+  white-space: pre-line;
+}
+
+.buttons {
+  display: flex;
+}
+
+.button {
+  width: 100%;
+  padding: sizeRegular;
+  font-weight: weightExtraBold;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  background-color: makerWhite;
+}
+
+.button:hover {
+  /* hover animation 생각!  */
+}

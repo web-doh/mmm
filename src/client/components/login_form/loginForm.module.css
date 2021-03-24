@@ -1,0 +1,42 @@
+@value makerBlack, makerWhite, makerPink, makerDarkG from '../../common/colors.css';
+@value sizeSmall, sizeRegular, sizeMedium, weightMedium, fontMedium,fontLarge, borderRadius from '../../common/size.css';
+
+.form {
+  width: 90%;
+}
+
+.item {
+  width: 100%;
+  margin: sizeMedium auto;
+}
+
+.box,
+.errorBox {
+  border-radius: borderRadius;
+  padding: 0.75rem fontMedium;
+  display: flex;
+  align-items: center;
+}
+
+.box {
+  border: 2px solid makerBlack;
+}
+
+.errorBox {
+  border: 2px solid makerPink;
+  margin-bottom: sizeRegular;
+}
+
+svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.input {
+  margin-left: sizeRegular;
+}
+
+.errorMsg {
+  color: makerPink;
+  font-weight: weightMedium;
+}
