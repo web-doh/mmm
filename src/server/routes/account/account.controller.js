@@ -24,7 +24,7 @@ const createUser = async (userInput) => {
 
 async function hashPassword(password) {
   const salt = await bcrypt.genSalt(8);
-  const hashedPwd = await bcrypt.hash(password, salt);
+  const hashedPwd = bcrypt.hash(password, salt);
 
   return hashedPwd;
 }
@@ -64,17 +64,14 @@ export const signUp = async (req, res, next) => {
     // Check whether ID exists
     const user = await User.findOne({ userId });
     if (user) {
-      return errorGenerator(res, "DUPLICATE USERID", 1, 409);
+      errorGenerator(res, "DUPLICATE USERID", 1, 409);
     }
 
     // Create Account & Save to DB
-
     const newUser = await createUser({ userId, password, username });
-    const number = await count();
-    const admin = await assignAdmin(newUser, number);
-    const response = await respond(res, newUser);
+    assignAdmin(newUser, count());
 
-    return response;
+    respond(res, newUser);
   } catch (err) {
     next(err);
   }
@@ -126,22 +123,20 @@ export const login = async (req, res, next) => {
     const user = await User.findOne({ userId });
 
     if (!user) {
-      return errorGenerator(res, "NO MATCHING USERID", 1, 404);
+      errorGenerator(res, "NO MATCHING USERID", 1, 404);
     }
 
     // Check whether password is valid
     const verifying = await verifyPwd(password, user.password);
     if (!verifying) {
-      return errorGenerator(res, "WRONG PASSWORD", 2, 403.11);
+      errorGenerator(res, "WRONG PASSWORD", 2, 403.11);
     }
 
     // Create token
     const token = await createToken(user);
-    user["token"] = token;
-    // Return success response
-    const response = await respond(res, user);
+    const signedUser = { _id: user._id, username: user.username, token };
 
-    return response;
+    respond(res, signedUser);
   } catch (err) {
     console.log("login failed!", err);
 

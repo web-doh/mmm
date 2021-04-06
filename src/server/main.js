@@ -16,7 +16,7 @@ import "./config/mongoose";
 import WebpackDevServer from "webpack-dev-server";
 import webpack from "webpack";
 
-import authRouter from "./routes/account/account";
+import api from "./routes";
 
 const port = process.env.PORT || 3001;
 
@@ -29,7 +29,11 @@ app.use(urlencoded({ extended: false }));
 
 app.use(express.static("public"));
 
-app.use("/account", authRouter);
+app.use("/api", api);
+
+app.get("/account/complete", (req, res) => {
+  res.redirect("/not-found");
+});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "..", "public", "index.html"));
