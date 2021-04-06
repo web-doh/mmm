@@ -2,7 +2,7 @@ import path from "path";
 import webpack from "webpack";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const TerserJSPlugin = require("terser-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 function getClientEnv() {
@@ -26,7 +26,7 @@ const clientEnv = getClientEnv();
 module.exports = {
   entry: ["./src/client/index.js", "./src/client/index.module.css"],
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "public/"),
     filename: "bundle.js",
   },
   resolve: {
@@ -81,7 +81,7 @@ module.exports = {
 
   optimization: {
     minimize: true,
-    minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
   },
 
   plugins: [

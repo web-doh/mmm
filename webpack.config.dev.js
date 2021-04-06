@@ -35,7 +35,7 @@ module.exports = {
     publicPath: "/",
     contentBase: "/dist/",
     proxy: {
-      "**": "http://localhost:3001",
+      "**": { target: "http://localhost:3001", changeOrigin: true },
     },
     port: 4000,
     stats: {
