@@ -1,0 +1,58 @@
+@value fontBig, sizeSmall, sizeRegular, sizeMedium, borderRadius, mediaMobile, mediaQuery from '../../common/size.css';
+@value makerBlack from '../../common/colors.css';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 10rem;
+}
+
+.right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search {
+  width: 20rem;
+  padding: sizeSmall sizeMedium;
+  margin: 0 sizeMedium;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 300ms ease-in-out;
+}
+
+.search:hover,
+.text:hover,
+.right svg:hover {
+  cursor: pointer;
+}
+
+.right > svg {
+  stroke-width: 3px;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .search {
+    width: fontBig;
+    height: fontBig;
+    border: none;
+    padding: 0;
+  }
+
+  .text {
+    display: none;
+  }
+
+  .search svg {
+    stroke-width: 3px;
+    margin: 0 auto;
+  }
+}

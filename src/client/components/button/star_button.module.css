@@ -1,0 +1,43 @@
+@value makerBlack, makerWhite, makerYellow, makerSmallShadow from '../../common/colors.css';
+
+.star {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid makerBlack;
+  border-radius: 50%;
+  background-color: makerWhite;
+  filter: makerSmallShadow;
+}
+
+.star svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: makerWhite;
+}
+
+.star:hover {
+  cursor: pointer;
+}
+
+.star:hover svg {
+  animation: spin 200ms linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(-72deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(72deg);
+  }
+}
+
+.liked {
+  background-color: makerYellow;
+}

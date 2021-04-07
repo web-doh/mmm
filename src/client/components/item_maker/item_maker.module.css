@@ -1,0 +1,254 @@
+@value fontMedium, fontLarge, weightMedium, sizeSmall, sizeRegular, sizeMedium, sizeLarge, fontRegular, fontBig, weightBold, weightExtraBold, borderRadius, mediaMobile, mediaQuery from "../../common/size.css";
+@value makerWhite, makerBlack, makerPink, makerGray, makerGreen, makerYellow, makerOrange, makerBack from "../../common/colors.css";
+
+.form {
+  width: 100%;
+  height: 100%;
+}
+
+/* header */
+.header {
+  height: 12.5%;
+  margin-bottom: sizeRegular;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name input {
+  width: 100%;
+}
+
+.name input,
+.name input::placeholder {
+  font-size: fontMedium;
+}
+
+/* contents */
+.contents {
+  height: 87.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.container {
+  height: 100%;
+}
+
+/* images */
+.images {
+  flex-basis: 47.5%;
+  height: 100%;
+  display: grid;
+  gap: 0.75rem;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 30.5%;
+}
+
+.image {
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: makerGray;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image svg {
+  width: fontBig;
+  height: fontBig;
+  color: makerWhite;
+}
+
+.mainImage {
+  background-color: makerYellow;
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.subImage {
+  background-color: makerOrange;
+  grid-row: 3 / 4;
+}
+
+.subImage:first-child {
+  grid-column: 1 / 2;
+}
+
+.subImage:last-child {
+  grid-column: 2 / 3;
+}
+
+/* right */
+.right {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  flex-basis: 87.5%;
+  overflow-y: overlay;
+}
+
+.listItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: sizeRegular;
+}
+
+.title {
+  flex-basis: 33.3%;
+  margin-right: sizeLarge;
+  font-weight: weightBold;
+  text-transform: capitalize;
+}
+
+.name .title {
+  flex-basis: auto;
+}
+
+.required {
+  position: relative;
+}
+
+.required:after {
+  content: "*";
+  position: absolute;
+  top: 0;
+  color: makerPink;
+}
+
+.name .required:after {
+  left: 3.2rem;
+}
+
+.list > .required:after {
+  left: 2.7rem;
+}
+
+.arrow {
+  position: absolute;
+  right: 4%;
+  top: 2px;
+  pointer-events: none;
+}
+
+.input {
+  flex-basis: 57.5%;
+  transform: translateX(-4px);
+  padding-bottom: sizeRegular;
+  border-bottom: 2px solid makerBlack;
+}
+
+.remarks {
+  flex-basis: 57.5%;
+  resize: none;
+  margin: sizeRegular 0;
+  padding: sizeRegular;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  cursor: text;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  padding: sizeRegular;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: fontRegular;
+  font-weight: weightExtraBold;
+  background-color: makerGreen;
+}
+
+.errorMsg {
+  color: makerPink;
+  font-weight: weightMedium;
+}
+
+.name .errorMsg {
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+}
+
+.list > .errorMsg {
+  display: block;
+  transform: translate(38%, -0.1rem);
+  margin-bottom: sizeRegular;
+}
+
+.requiredMark {
+  color: makerPink;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .contents {
+    padding-right: sizeRegular;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .name {
+    width: 100%;
+  }
+
+  .images {
+    width: 100%;
+    min-height: 360px;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  .list {
+    margin: sizeRegular 0;
+    overflow-y: initial;
+  }
+
+  .input {
+    transform: translateX(0px);
+  }
+}
+
+@media screen and (max-width: mediaMobile) {
+  .listItem {
+    flex-direction: column;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .arrow {
+    top: fontLarge;
+    right: 0;
+  }
+
+  .list > .errorMsg {
+    transform: none;
+  }
+}

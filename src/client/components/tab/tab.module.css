@@ -1,0 +1,25 @@
+@value sizeSmall, sizeRegular, fontMedium, weightBold, borderRadius from '../../common/size.css';
+@value makerBlack, makerPurple, makerLightPurple from '../../common/colors.css';
+
+.container {
+  width: 5rem;
+  height: 2rem;
+  margin: 0 sizeSmall;
+  border: 2px solid makerBlack;
+  border-bottom: none;
+  border-radius: borderRadius borderRadius 0 0;
+  background-color: makerLightPurple;
+  display: flex;
+  justify-content: center;
+}
+
+.selected {
+  height: 2.7rem;
+  background-color: makerPurple;
+}
+
+.button {
+  width: 100%;
+  font-size: fontMedium;
+  font-weight: weightBold;
+}

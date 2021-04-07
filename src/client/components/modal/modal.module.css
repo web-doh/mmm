@@ -1,24 +1,34 @@
-@value makerBlack, makerWhite, makerBigShadow from '../../common/colors.css';
-@value fontBig, sizeMedium,sizeLarge, borderRadius, mediaMobile from '../../common/size.css';
+@value sizeLarge, borderRadius, mediaQuery from "../../common/size.css";
+@value makerWhite, makerBlack, makerBack, makerBigShadow from "../../common/colors.css";
 
-.container {
-  width: 80%;
-  max-width: 25rem;
-  min-width: 320px;
-  padding: 1.75rem sizeLarge;
-  border: 2px solid makerBlack;
-  border-radius: borderRadius;
-  background-color: makerWhite;
-  filter: makerBigShadow;
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  background-color: makerBack;
 }
 
-.header {
-  width: 90%;
-  margin-bottom: sizeMedium;
+.container {
+  width: 760px;
+  height: 450px;
+  margin: 0 auto;
+  padding: sizeLarge;
+  border-radius: borderRadius;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  background-color: makerWhite;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .container {
+    max-width: 480px;
+    min-width: 320px;
+    width: 90%;
+    padding: sizeLarge 1.5rem;
+  }
 }

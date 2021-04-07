@@ -1,0 +1,85 @@
+@value sizeSmall, fontRegular, fontMedium, borderRadius from '../../common/size.css';
+@value makerWhite from '../../common/colors.css';
+
+.container {
+  height: 16rem;
+  position: relative;
+  display: grid;
+  grid-template-rows: 57.5% 42.5%;
+  border-radius: borderRadius;
+}
+
+.item {
+  overflow: hidden;
+  position: relative;
+  background-image: linear-gradient(#f1f3f5 100%, transparent 0);
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 75px 75px makerWhite;
+  animation: skeleton 1200ms linear infinite;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border-radius: borderRadius borderRadius 0 0;
+}
+
+.star {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  position: absolute;
+  right: 7.5%;
+  top: 50%;
+}
+
+.summary {
+  padding: sizeRegular sizeMedium;
+}
+
+.name {
+  width: 30%;
+  height: fontMedium;
+}
+
+.description {
+  width: 80%;
+  height: fontRegular;
+}
+
+.description:first-child {
+  margin: sizeSmall 0;
+  width: 50%;
+}
+
+@keyframes skeleton {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
