@@ -8,24 +8,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow: auto;
-}
-
-.list::-webkit-scrollbar {
-  width: 1rem;
-}
-
-.list::-webkit-scrollbar-thumb {
-  background-color: makerShadow;
-  border-radius: 0.5rem;
-  background-clip: padding-box;
-  border: 2px solid transparent;
-}
-
-.list::-webkit-scrollbar-track {
-  background-color: makerWhite;
-  border-radius: 0.5rem;
-  box-shadow: inset 0px 0px 5px makerShadow;
+  overflow-y: overlay;
 }
 
 @media screen and (max-width: mediaQuery) {

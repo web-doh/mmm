@@ -1,7 +1,7 @@
 @value sizeLarge, mediaQuery from '../../common/size.css';
 
 .containers {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: space-between;
@@ -11,7 +11,7 @@
 .container {
   flex: 1 0 50%;
   width: 100%;
-  padding: sizeLarge;
+  padding: 0 sizeLarge;
 }
 
 .left {
@@ -24,6 +24,10 @@
 .right {
   height: 100%;
   overflow: auto;
+}
+
+.button {
+  width: 20rem;
 }
 
 .logo {

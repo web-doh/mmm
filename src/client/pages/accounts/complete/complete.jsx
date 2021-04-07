@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../../atoms/atoms";
 import success from "../../../assets/success.png";
@@ -12,7 +12,8 @@ import intro3 from "../../../assets/intro3.png";
 import CircleButton from "../../../components/button/circle_button";
 
 const Complete = (props) => {
-  const userInfo = useRecoilValue(userState); // user로 변경할 것
+  const history = useHistory();
+  const username = useLocation().state ? useLocation().state.username : "";
   const [contents, setContents] = useState([
     {
       id: 1,
@@ -37,6 +38,12 @@ const Complete = (props) => {
     },
   ]);
 
+  useEffect(() => {
+    if (!username) {
+      history.push("/");
+    }
+  }, [username]);
+
   const clickHandler = (idx) => {
     setContents((contents) =>
       contents.map((content, i) => {
@@ -54,10 +61,8 @@ const Complete = (props) => {
       <section className={`${styles.container} ${styles.left}`}>
         <h1 className={styles.name}>MMM</h1>
         <img src={success} className={styles.icon} alt="success icon" />
-        <h2 className={styles.greeting}>Welcome, username !</h2>
-        <Link to="/account/login">
-          <LinkButton name="Login & Get Started" />
-        </Link>
+        <h2 className={styles.greeting}>Welcome, {username}!</h2>
+        <LinkButton name="Login & Get Started" to="/account/login" />
       </section>
       <section className={`${styles.container} ${styles.right}`}>
         <section className={styles.contents}>

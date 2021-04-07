@@ -1,29 +1,26 @@
 import React, { memo, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { requestRegister } from "../../../actions/account.action";
-import Modal from "../../../components/modal/modal";
+import AuthModal from "../../../components/auth_modal/auth_modal";
 import Popup from "../../../components/popup/popup";
 import SignupForm from "../../../components/signup_form/signupForm";
 import styles from "./signup.module.css";
 
-const Signup = (props) => {
+const Signup = ({ authService }) => {
   const history = useHistory();
   const [error, setError] = useState("");
 
-  const popupContents = {
-    title: "Duplicate Id",
-    info: error,
-    buttons: [
-      { id: "cancel", name: "Cancel", clickHandler: () => setError("") },
-    ],
-  };
-
-  const clickHandler = () => {
+  const cancelHandler = () => {
     setError("");
   };
 
+  const errorPopup = {
+    title: "Duplicate Id",
+    info: error,
+    buttons: [{ id: "cancel", name: "Cancel", cancelHandler }],
+  };
+
   const handleRegister = async (userInfo) => {
-    const response = await requestRegister(userInfo);
+    const response = await authService.register(userInfo);
     if (response.data.status === "success") {
       history.push({
         pathname: "/account/complete",
@@ -44,8 +41,10 @@ const Signup = (props) => {
 
   return (
     <section className={styles.container}>
-      <Modal title="Sign up" Content={Content} />
-      {error && <Popup contents={popupContents} />}
+      <div className={styles.modal}>
+        <AuthModal title="Sign up" Content={Content} isPopup={true} />
+      </div>
+      {error && <Popup contents={errorPopup} />}
     </section>
   );
 };

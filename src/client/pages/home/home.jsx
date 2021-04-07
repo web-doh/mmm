@@ -10,10 +10,6 @@ import { userState } from "../../atoms/atoms";
 const Home = (props) => {
   const [loginUser, setLoginUser] = useRecoilState(userState);
 
-  useEffect(() => {
-    console.log(loginUser);
-  }, [loginUser]);
-
   return (
     <div className={styles.containers}>
       <section className={`${styles.container} ${styles.left}`}>
@@ -21,11 +17,10 @@ const Home = (props) => {
         <h3 className={styles.title}>
           <b>M</b>y <b>M</b>aterials <b>M</b>anager
         </h3>
-        <Link to="/account/login">
-          {" "}
+        <div className={styles.button}>
           {/**link to board - protected router : redirect */}
-          <LinkButton name="Get Started" />
-        </Link>
+          <LinkButton name="Get Started" to="/account/login" />
+        </div>
       </section>
       <section className={`${styles.container} ${styles.right}`}>
         <IntroCards />
