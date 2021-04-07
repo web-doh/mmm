@@ -1,20 +1,17 @@
 import React, { useCallback, useEffect } from "react";
-import { useHistory, useLocation } from "react-router";
 import { useRecoilState } from "recoil";
 import { itemsState, optionState } from "../../atoms/atoms";
 import { Plus } from "react-feather";
-import Header from "../../components/header/header";
-import Items from "../../components/items/items";
 import TabBar from "../../components/tab_bar/tab_bar";
 import Template from "../../components/template/template";
-import styles from "./board.module.css";
+import styles from "./favorites.module.css";
+import Items from "../../components/items/items";
 
-const Board = ({ likeItem, isLoading, logoutHandler }) => {
-  const location = useLocation();
-  const history = useHistory();
+const Favorites = ({ likeItem, isLoading, logoutHandler }) => {
   const [items, setItems] = useRecoilState(itemsState);
   const [option, setOption] = useRecoilState(optionState);
-  const filtered = items.filter((item) => {
+  const allItems = items.filter((item) => item.isLiked);
+  const filtered = allItems.filter((item) => {
     if (option["filter"] === "All") {
       return item;
     } else {
@@ -26,13 +23,6 @@ const Board = ({ likeItem, isLoading, logoutHandler }) => {
     setOption({ filter: "All", sorting: "Sort by alphabet" });
   }, []);
 
-  const onClickHandler = () => {
-    history.push({
-      pathname: "/board/item",
-      state: { background: location, modal: "maker" },
-    });
-  };
-
   const contents = useCallback(
     () => <Items items={filtered} likeItem={likeItem} isLoading={isLoading} />,
     [isLoading, filtered]
@@ -41,23 +31,15 @@ const Board = ({ likeItem, isLoading, logoutHandler }) => {
   const tabBar = useCallback(() => {
     return (
       <aside className={styles.tabBar}>
-        <TabBar items={items} />
-        <button
-          type="button"
-          className={styles.button}
-          onClick={onClickHandler}
-        >
-          <Plus />
-          <p className={styles.content}>Add Materials</p>
-        </button>
+        <TabBar items={allItems} />
       </aside>
     );
-  }, [TabBar, items]);
+  }, [TabBar, allItems]);
 
   return (
     <>
       <Template
-        title="Board"
+        title="Favorites"
         Contents={contents}
         Aside={tabBar}
         logoutHandler={logoutHandler}
@@ -66,4 +48,4 @@ const Board = ({ likeItem, isLoading, logoutHandler }) => {
   );
 };
 
-export default Board;
+export default Favorites;

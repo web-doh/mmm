@@ -1,11 +1,8 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
-import { itemsState } from "../../atoms/atoms";
 import Tab from "../tab/tab";
 import styles from "./tab_bar.module.css";
 
-const TabBar = (props) => {
-  const items = useRecoilValue(itemsState);
+const TabBar = ({ items }) => {
   const tabs =
     items[0] &&
     items[0]["type"] &&

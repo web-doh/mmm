@@ -2,6 +2,7 @@
 @value makerBlack from '../../common/colors.css';
 
 .container {
+  height: 3rem;
   margin: sizeLarge 0 calc(sizeLarge * 2);
   border-bottom: 4px solid makerBlack;
   display: flex;

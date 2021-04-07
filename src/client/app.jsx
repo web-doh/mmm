@@ -11,6 +11,8 @@ import PrivateRoute from "./components/routes/private_route";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { itemsState, itemModalState } from "./atoms/atoms";
 import ItemIndex from "./pages/board/item_index/item_index";
+import Search from "./pages/search/search";
+import Favorites from "./pages/favorites/favorites";
 
 const App = ({ FileInput, authService, itemRepository }) => {
   const location = useLocation();
@@ -64,14 +66,36 @@ const App = ({ FileInput, authService, itemRepository }) => {
     [itemRepository]
   );
 
+  const onLogout = useCallback(() => {
+    authService.logout();
+  }, [authService]);
+
   return (
     <>
       <Switch location={background || location}>
         <Route exact path={["/", "/home"]}>
           <Home />
         </Route>
+        <PrivateRoute exact path="/search" isAuthenticated={loginUser}>
+          <Search
+            likeItem={likeItem}
+            isLoading={isLoading}
+            logoutHandler={onLogout}
+          />
+        </PrivateRoute>
+        <PrivateRoute exact path="/favorites" isAuthenticated={loginUser}>
+          <Favorites
+            likeItem={likeItem}
+            isLoading={isLoading}
+            logoutHandler={onLogout}
+          />
+        </PrivateRoute>
         <PrivateRoute exact path="/board" isAuthenticated={loginUser}>
-          <Board likeItem={likeItem} isLoading={isLoading} />
+          <Board
+            likeItem={likeItem}
+            isLoading={isLoading}
+            logoutHandler={onLogout}
+          />
         </PrivateRoute>
         {!loginUser ? (
           <Route exact path="/account/login">

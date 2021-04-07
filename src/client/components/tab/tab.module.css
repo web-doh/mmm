@@ -11,6 +11,7 @@
   background-color: makerLightPurple;
   display: flex;
   justify-content: center;
+  transition: all 150ms ease-in-out;
 }
 
 .selected {
