@@ -1,5 +1,5 @@
-@value mainFont,fontTiny,fontSmall,fontRegular,fontMedium,fontLarge,fontBig,fontHuge,weightLight,weightRegular,weightMedium,weightBold,weightExtraBold,borderRadius from '/common/size.css';
-@value makerBlack,makerDarkG,makerGray from '/common/colors.css';
+@value sizeRegular, mainFont, fontTiny, fontSmall, fontRegular, fontMedium, fontLarge, fontBig, fontHuge, weightLight, weightRegular, weightMedium, weightBold, weightExtraBold, borderRadius from '/common/size.css';
+@value makerBlack, makerWhite, makerDarkG, makerGray, makerShadow from '/common/colors.css';
 
 body {
   font-family: mainFont;
@@ -32,7 +32,8 @@ h4 {
   margin: 0.5rem 0;
 }
 
-p {
+p,
+label {
   font-size: fontRegular;
   font-weight: weightMedium;
   margin: 0.25rem 0;
@@ -60,10 +61,44 @@ textarea::placeholder {
   color: #888c99;
 }
 
+select {
+  width: 100%;
+  padding: sizeRegular sizeMedium;
+  border: none;
+  outline: none;
+  font-family: mainFont;
+  font-size: fontRegular;
+  font-weight: weightMedium;
+  appearance: none;
+}
+
+select::-ms-expand{
+  display:none;
+}
+
 button {
   font-family: mainFont;
 }
 
 svg {
   color: makerDarkG;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+  z-index: 99;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: makerShadow;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-track {
+  margin: sizeRegular;
+  border-radius: 0.5rem;
+  background-color: makerWhite;
+  box-shadow: inset 0px 0px 5px makerShadow;
 }

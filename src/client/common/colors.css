@@ -1,7 +1,7 @@
 @value makerBlack: #18191f;
 @value makerWhite: #fff;
 @value makerDarkG: #474a57;
-@value makerGray: #888c99;
+@value makerGray: #9FA4B4;
 @value makerGreen: #00c6ae;
 @value makerDarkY: #FFBD12;
 @value makerYellow: #ffd465;
@@ -11,7 +11,7 @@
 @value makerPink: #ff9692;
 @value makerPurple: #8094ff;
 @value makerLightPurple: #e9e7fc;
-@value makerBack: rgba(16, 16, 16, 0.6);
+@value makerBack: rgba(10, 10, 10, 0.6);
 @value makerSmallShadow: drop-shadow(0px 2px 0px makerBlack);
 @value makerBigShadow: drop-shadow(0px 4px 0px makerBlack);
 @value makerShadow: rgba(150,150,150,0.15);

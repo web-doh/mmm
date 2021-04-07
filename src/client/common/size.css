@@ -6,8 +6,8 @@
 @value fontTiny: 0.75rem;
 @value fontSmall: 0.875rem;
 @value fontRegular: 1rem;
-@value fontMedium: 1.125rem;
-@value fontLarge: 1.75rem;
+@value fontMedium: 1.25rem;
+@value fontLarge: 1.5rem;
 @value fontBig: 2rem;
 @value fontHuge: 2.25rem;
 
@@ -28,6 +28,5 @@
 @value borderRadius: 16px;
 
 /* media query */
-@value mediaQuery: 992px;
-@value mediaMobile: 420px;
-/*  */
+@value mediaQuery: 768px;
+@value mediaMobile: 480px;
