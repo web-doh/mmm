@@ -1,35 +1,36 @@
-import React from "react";
-import { useRecoilValue } from "recoil";
-import { itemsState, optionState } from "../../atoms/atoms";
+import React, { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { optionState } from "../../atoms/atoms";
 import Item from "../item/item";
+import ItemMaker from "../item_maker/item_maker";
 import Skeleton from "../skeleton/skeleton";
 import styles from "./items.module.css";
 
-const Items = ({ likeItem, isLoading }) => {
-  const items = useRecoilValue(itemsState);
-  const option = useRecoilValue(optionState);
-  const filtered = items.filter((item) => {
-    if (option["filter"] === "All") {
-      return item;
-    } else {
-      if (item.type.includes(option["filter"])) return item;
+const Items = ({ items, likeItem, isLoading }) => {
+  const [option, setOption] = useRecoilState(optionState);
+
+  useEffect(() => {
+    if (option["filter"] !== "All" && !items.length) {
+      setOption({ filter: "All", sorting: "Sort by alphabet" });
     }
-  });
+  }, [items]);
 
   return (
     <>
-      {filtered.length ? (
+      {items.length ? (
         <ul className={styles.container}>
           {isLoading
             ? new Array(6).fill(1).map((_, i) => <Skeleton key={i} />)
-            : filtered.map((item) => (
+            : items.map((item) => (
                 <Item key={item._id} item={item} likeItem={likeItem} />
               ))}{" "}
         </ul>
-      ) : (
+      ) : option["filter"] === "All" ? (
         <div className={styles.empty}>
           <h4>Empty!</h4>
         </div>
+      ) : (
+        ""
       )}
     </>
   );

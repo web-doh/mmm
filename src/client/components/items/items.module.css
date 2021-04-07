@@ -6,6 +6,7 @@
   grid-template-columns: repeat(auto-fill, 18rem);
   justify-content: center;
   height: 100%;
+  transition: all 200ms ease-in-out;
 }
 
 .empty {

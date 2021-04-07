@@ -4,13 +4,17 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/mini_logo.png";
 import styles from "./header.module.css";
 
-const Header = ({ search }) => {
+const Header = ({ search, onOpenHandler }) => {
   const location = useLocation();
   let path = location.pathname;
 
   useEffect(() => {
     path = location.pathname;
   }, [location]);
+
+  const onClickHandler = () => {
+    onOpenHandler(true);
+  };
 
   return (
     <header className={styles.container}>
@@ -26,7 +30,13 @@ const Header = ({ search }) => {
             </div>
           </Link>
         )}
-        <Menu />
+        <button
+          type="button"
+          className={styles.menuIcon}
+          onClick={onClickHandler}
+        >
+          <Menu />
+        </button>
       </div>
     </header>
   );
