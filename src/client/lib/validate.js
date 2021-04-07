@@ -45,3 +45,17 @@ export function validateLogin({ userId, password }) {
 
   return errors;
 }
+
+export function validateItem({ name, type }) {
+  const errors = {};
+
+  if (!name) {
+    errors.name = "Please enter item name.";
+  }
+
+  if (!type) {
+    errors.type = "Please choose an item type.";
+  }
+
+  return errors;
+}

@@ -1,6 +1,21 @@
 @import "./common/reset.css";
 @import "./common/common.css";
+@value makerWhite from './common/colors.css';
 @value mediaMobile from './common/size.css';
+
+html {
+  background: repeat url(./assets/default2.png);
+}
+
+body {
+  background-color: makerWhite;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#root {
+  overflow: hidden;
+}
 
 @media screen and (max-width: mediaMobile) {
   html {

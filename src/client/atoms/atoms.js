@@ -9,6 +9,7 @@ export const itemsState = atom({
   key: "itemState",
   default: [
     {
+      _id: "",
       name: "",
       type: "",
       size: "",
@@ -16,10 +17,16 @@ export const itemsState = atom({
       manufacture: "",
       seller: "",
       contact: "",
+      email: "",
       project: "",
       remarks: "",
-      file: ["", "", ""],
-      isMarked: false,
+      file: [{ url: "" }, { url: "" }, { url: "" }],
+      isLiked: false,
     },
   ],
+});
+
+export const optionState = atom({
+  key: "optionState",
+  default: { filter: "All", sorting: "Sort by alphabet" },
 });
