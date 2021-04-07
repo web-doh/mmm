@@ -1,0 +1,53 @@
+@value makerBlack, makerYellow, makerSmallShadow, makerShadow from '../../common/colors.css';
+@value sizeSmall, sizeRegular, fontTiny, fontMedium, fontBig, weightBold, borderRadius, mediaQuery from '../../common/size.css';
+
+.tabBar {
+  position: relative;
+}
+
+.button {
+  position: absolute;
+  right: 0;
+  top: sizeSmall;
+  height: fontBig;
+  padding: 0 sizeRegular;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  background-color: makerYellow;
+  display: flex;
+  align-items: center;
+  filter: makerSmallShadow;
+}
+
+.button svg {
+  width: fontTiny;
+  stroke-width: 3px;
+  margin-right: sizeSmall;
+}
+
+.button:hover,
+.content:hover {
+  cursor: pointer;
+}
+
+.content {
+  font-weight: weightBold;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .button {
+    width: fontBig;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .button svg {
+    margin: 0 auto;
+    width: fontMedium;
+    height: fontMedium;
+  }
+
+  .content {
+    display: none;
+  }
+}

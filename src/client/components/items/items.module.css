@@ -1,0 +1,16 @@
+@value sizeLarge from '../../common/size.css';
+
+.container {
+  display: grid;
+  gap: sizeLarge;
+  grid-template-columns: repeat(auto-fill, 18rem);
+  justify-content: center;
+  height: 100%;
+}
+
+.empty {
+  height: 12.5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

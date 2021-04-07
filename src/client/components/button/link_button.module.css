@@ -2,7 +2,7 @@
 @value borderRadius, fontMedium, weightExtraBold from '../../common/size.css';
 
 .button {
-  width: 20rem;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

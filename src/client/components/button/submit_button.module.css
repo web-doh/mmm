@@ -1,4 +1,4 @@
-@value makerBlack, makerGreen, makerShadow from '../../common/colors.css';
+@value makerWhite, makerBlack, makerGreen, makerShadow from '../../common/colors.css';
 @value sizeRegular, borderRadius, fontMedium, weightBold from '../../common/size.css';
 
 .button {
@@ -19,6 +19,11 @@
   overflow: hidden;
   z-index: 2;
   transition: transform 300ms ease-in-out;
+}
+
+.black {
+  color: makerWhite;
+  background-color: makerBlack;
 }
 
 /* .button::after {

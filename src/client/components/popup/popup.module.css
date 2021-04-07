@@ -5,12 +5,14 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  border-radius: borderRadius;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: makerBack;
+  z-index: 99;
 }
 
 .window {
@@ -43,10 +45,16 @@
   padding: sizeRegular;
   font-weight: weightExtraBold;
   border: 2px solid makerBlack;
-  border-radius: borderRadius;
+  border-radius: calc(borderRadius / 2);
   background-color: makerWhite;
 }
 
 .button:hover {
   /* hover animation 생각!  */
+}
+
+.button:nth-child(2) {
+  margin-left: sizeRegular;
+  color: makerWhite;
+  background-color: makerBlack;
 }

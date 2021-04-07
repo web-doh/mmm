@@ -1,0 +1,9 @@
+@value sizeLarge from '../../common/size.css';
+@value makerBlack from '../../common/colors.css';
+
+.container {
+  margin: sizeLarge 0 calc(sizeLarge * 2);
+  border-bottom: 4px solid makerBlack;
+  display: flex;
+  align-items: flex-end;
+}
