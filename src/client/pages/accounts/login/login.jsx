@@ -1,57 +1,51 @@
-import React, { memo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { requestLogin } from "../../../actions/account.action";
 import { userState } from "../../../atoms/atoms";
 import LoginForm from "../../../components/login_form/loginForm";
-import Modal from "../../../components/modal/modal";
+import AuthModal from "../../../components/auth_modal/auth_modal";
 import Popup from "../../../components/popup/popup";
 import styles from "./login.module.css";
 
-const Login = (props) => {
+const Login = ({ authService }) => {
   const history = useHistory();
   const [error, setError] = useState("");
-  const [loginUser, setLoginUser] = useRecoilState(userState);
-
-  const popupContents = {
-    title: "Login Error!",
-    info: error,
-    buttons: [
-      { id: "cancel", name: "Cancel", clickHandler: () => setError("") },
-    ],
-  };
 
   const clickHandler = () => {
     setError("");
   };
 
+  const popupContents = {
+    title: "Login Error!",
+    info: error,
+    buttons: [{ id: "cancel", name: "Cancel", clickHandler }],
+  };
+
   const handleLogin = async (userInfo) => {
-    const response = await requestLogin(userInfo);
+    const response = await authService.login(userInfo);
 
     if (response.data.status === "success") {
-      const { _id, username } = response.data.user;
+      const { _id, username, token } = response.data.user;
 
-      history.push("/"); //board로 수정할것
-      setLoginUser({ _id, username, isAuthenticated: true });
+      localStorage.setItem("token", token);
+      localStorage.setItem("_id", _id);
+      localStorage.setItem("username", username);
+
+      history.push("/board");
     } else {
-      const errorCode = response.data.code - 1;
-
       /*  
       ERROR CODES:
             1: NO MATCHING USERID
             2: WRONG PASSWORD
       */
 
-      let errorMessage = [
-        `It is not a registered email. Please check your email address.`,
-        `The password is incorrect. Please try again.`,
-      ];
+      const errorMessage = "Email address or password do not match.";
 
-      setError(errorMessage[errorCode]);
+      setError(errorMessage);
     }
   };
 
-  const Content = memo(() => {
+  const Content = useCallback(() => {
     return (
       <>
         <LoginForm onLogin={handleLogin} />
@@ -67,7 +61,10 @@ const Login = (props) => {
 
   return (
     <section className={styles.container}>
-      <Modal title="Login" Content={Content} />
+      <div className={styles.modal}>
+        <AuthModal title="Login" Content={Content} />
+      </div>
+
       {error && <Popup contents={popupContents} />}
     </section>
   );

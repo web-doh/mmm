@@ -1,6 +1,5 @@
 import React from "react";
 import { Lock, Mail, User } from "react-feather";
-import { requestRegister } from "../../actions/account.action";
 import { registerState } from "../../atoms/atoms";
 import useForm from "../../lib/useForm";
 import { validateSignup } from "../../lib/validate";
@@ -8,7 +7,13 @@ import SubmitButton from "../button/submit_button";
 import styles from "./signupForm.module.css";
 
 const SignupForm = ({ onRegister }) => {
-  const { userInfo, errors, submitting, handleChange, handleSubmit } = useForm({
+  const {
+    data: userInfo,
+    errors,
+    submitting,
+    handleChange,
+    handleSubmit,
+  } = useForm({
     initialValues: {
       userId: "",
       username: "",

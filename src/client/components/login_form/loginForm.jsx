@@ -1,6 +1,5 @@
 import React from "react";
 import { Lock, Mail } from "react-feather";
-import { requestLogin } from "../../actions/account.action";
 import { loginState } from "../../atoms/atoms";
 import useForm from "../../lib/useForm";
 import { validateLogin } from "../../lib/validate";
@@ -8,7 +7,13 @@ import SubmitButton from "../button/submit_button";
 import styles from "./loginForm.module.css";
 
 const LoginForm = ({ onLogin }) => {
-  const { userInfo, errors, submitting, handleChange, handleSubmit } = useForm({
+  const {
+    data: userInfo,
+    errors,
+    submitting,
+    handleChange,
+    handleSubmit,
+  } = useForm({
     initialValues: { userId: "", password: "" },
     onSubmit: onLogin,
     validate: validateLogin,

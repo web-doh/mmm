@@ -1,0 +1,21 @@
+@value makerBlack, makerWhite, makerBigShadow from '../../common/colors.css';
+@value fontBig, sizeMedium,sizeLarge, borderRadius, mediaMobile from '../../common/size.css';
+
+.container {
+  padding: 1.75rem sizeLarge;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  background-color: makerWhite;
+  filter: makerBigShadow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 90%;
+  margin-bottom: sizeMedium;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
