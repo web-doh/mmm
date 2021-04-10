@@ -1,0 +1,41 @@
+@value fontLarge, borderRadius from "../../common/size.css";
+@value makerWhite, makerBlack, makerLightBack from "../../common/colors.css";
+
+.background {
+  height: 100vh;
+  padding: 0 3rem;
+  background-color: makerLightBack;
+}
+
+.container {
+  max-width: 750px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-2.5rem);
+}
+
+.logo {
+  width: 12.5rem;
+  transition: all 150ms linear;
+}
+
+.logo:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.contents {
+  height: 20rem;
+  padding: 2.4rem 3.2rem;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: makerWhite;
+  box-shadow: 0px 4px 0px makerBlack;
+}

@@ -1,0 +1,31 @@
+@value fontLarge, weightBold, sizeRegular, sizeLarge, mediaQuery from '../../common/size.css';
+@value makerBlack from '../../common/colors.css';
+
+.bar {
+  height: 3rem;
+  margin: sizeLarge 0 calc(sizeLarge * 2);
+  padding-bottom: sizeRegular;
+  border-bottom: 4px solid makerBlack;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input,
+.input::placeholder {
+  width: 100%;
+  font-size: fontLarge;
+  font-weight: weightBold;
+}
+
+.input {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke-width: 3px;
+}
