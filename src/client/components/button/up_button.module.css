@@ -1,0 +1,40 @@
+@value makerBlack, makerWhite, makerSmallShadow from '../../common/colors.css';
+
+.button {
+  position: fixed;
+  bottom: 2rem;
+  right: 0.75rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 2px solid makerBlack;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 100;
+  cursor: pointer;
+  pointer-events: none;
+  animation: fadeIn 150ms;
+  transition: opacity 200ms linear;
+}
+
+.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: makerWhite;
+  box-shadow: makerSmallShadow;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.show svg {
+  stroke-width: 3px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}

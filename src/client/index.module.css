@@ -1,15 +1,16 @@
 @import "./common/reset.css";
 @import "./common/common.css";
-@value makerWhite from './common/colors.css';
+@value makerWhite, makerLightBack from './common/colors.css';
 @value mediaMobile from './common/size.css';
 
 html {
-  background: repeat url(./assets/default2.png);
+  background-color: makerLightBack;
 }
 
 body {
   background-color: makerWhite;
   max-width: 1200px;
+  height: 100%;
   margin: 0 auto;
 }
 

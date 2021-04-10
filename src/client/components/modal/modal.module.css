@@ -2,7 +2,7 @@
 @value makerWhite, makerBlack, makerBack, makerBigShadow from "../../common/colors.css";
 
 .background {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -11,6 +11,7 @@
   justify-content: center;
   align-items: center;
   background-color: makerBack;
+  z-index: 101;
 }
 
 .container {

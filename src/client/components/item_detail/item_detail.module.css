@@ -1,6 +1,13 @@
 @value sizeSmall, sizeRegular, sizeMedium, sizeLarge, fontRegular, fontBig, weightBold, weightExtraBold, borderRadius, mediaMobile, mediaQuery from "../../common/size.css";
 @value makerWhite, makerBlack, makerGray, makerGreen, makerYellow, makerOrange, makerBack from "../../common/colors.css";
 
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 /* header */
 .header {
   height: 12.5%;
@@ -37,6 +44,7 @@
 }
 
 .star {
+  margin-left: sizeRegular;
   transform: scale(0.9);
 }
 
@@ -140,8 +148,13 @@
   text-transform: capitalize;
 }
 
+.description {
+  flex-basis: 66.7%;
+}
+
 .remarks {
-  flex-basis: 57.5%;
+  flex-basis: 66.7%;
+  padding: 0;
   height: 4rem;
   resize: none;
   background-color: transparent;

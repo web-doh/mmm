@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
+import UpButton from "../button/up_button";
 import Header from "../header/header";
 import Navbar from "../navBar/navbar";
 import styles from "./template.module.css";
@@ -20,10 +21,11 @@ const Template = ({ Aside, Contents, title, logoutHandler }) => {
       />
       <section className={styles.body}>
         <header>
-          <h1>{title}</h1>
-          <Aside />
+          {title && <h1>{title}</h1>}
+          {Aside && <Aside />}
         </header>
         <Contents />
+        <UpButton />
       </section>
     </div>
   );

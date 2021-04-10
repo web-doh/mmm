@@ -1,23 +1,28 @@
-@value sizeRegular, mediaMobile from '../../common/size.css';
+@value sizeRegular, mediaMobile, mediaQuery from '../../common/size.css';
 @value makerWhite, makerShadow from '../../common/colors.css';
 
 .container {
   padding: 0 3rem;
-  height: 100vh;
-  overflow-y: overlay;
+  height: 100%;
+  min-height: 100vh;
 }
 
 .body {
   padding: 0 3.6rem;
 }
 
-@media screen and (max-width: mediaMobile) {
+@media screen and (max-width: mediaQuery) {
   .container {
-    min-width: 320px;
     padding: 0 1.5rem 0 2rem;
   }
 
   .body {
     padding: 0 1.8rem;
+  }
+}
+
+@media screen and (max-width: mediaMobile) {
+  .container {
+    min-width: 320px;
   }
 }

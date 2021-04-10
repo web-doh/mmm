@@ -2,13 +2,12 @@
 @value sizeSmall, sizeRegular, fontTiny, fontMedium, fontBig, weightBold, borderRadius, mediaQuery from '../../common/size.css';
 
 .tabBar {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .button {
-  position: absolute;
-  right: 0;
-  top: sizeSmall;
   height: fontBig;
   padding: 0 sizeRegular;
   border: 2px solid makerBlack;
@@ -17,6 +16,8 @@
   display: flex;
   align-items: center;
   filter: makerSmallShadow;
+  transform: translateY(-2rem);
+  transition: all 150ms linear;
 }
 
 .button svg {
@@ -28,6 +29,10 @@
 .button:hover,
 .content:hover {
   cursor: pointer;
+}
+
+.button:hover {
+  transform: translateY(-2rem) scale(1.02);
 }
 
 .content {

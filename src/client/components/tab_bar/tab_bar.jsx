@@ -13,7 +13,7 @@ const TabBar = ({ items }) => {
   return (
     <ul className={styles.container}>
       <Tab name="All" />
-      {tabs && tabs.map((tab) => <Tab key={tab} name={tab} />)}
+      {tabs && tabs.map((tab, i) => <Tab key={tab} idx={i} name={tab} />)}
     </ul>
   );
 };
