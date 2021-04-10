@@ -8,21 +8,21 @@ import Board from "./pages/board/board";
 import Home from "./pages/home/home";
 import NotFound from "./pages/not_found/not_found";
 import PrivateRoute from "./components/routes/private_route";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { itemsState, itemModalState } from "./atoms/atoms";
+import { useRecoilState } from "recoil";
+import { itemsState } from "./atoms/atoms";
 import ItemIndex from "./pages/board/item_index/item_index";
 import Search from "./pages/search/search";
 import Favorites from "./pages/favorites/favorites";
 
 const App = ({ FileInput, authService, itemRepository }) => {
   const location = useLocation();
-  const background = location.state && location.state.background;
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useRecoilState(itemsState);
   const loginUser = localStorage.getItem("_id");
+  const background = location.state && location.state.background;
 
   useEffect(async () => {
-    if (!loginUser) return;
+    if (!loginUser || location.pathname === "/") return;
 
     setIsLoading(true);
     const stopSync = await itemRepository.initialItems(loginUser, (items) =>
@@ -31,7 +31,7 @@ const App = ({ FileInput, authService, itemRepository }) => {
     setIsLoading(false);
 
     return () => stopSync();
-  }, [loginUser]);
+  }, [loginUser, itemRepository]);
 
   const likeItem = useCallback(
     async (id) => {
@@ -97,25 +97,25 @@ const App = ({ FileInput, authService, itemRepository }) => {
             logoutHandler={onLogout}
           />
         </PrivateRoute>
-        {!loginUser ? (
-          <Route exact path="/account/login">
+        <Route exact path="/account/login">
+          {!loginUser ? (
             <Login authService={authService} />
-          </Route>
-        ) : (
-          <Redirect to="/board" />
-        )}
-        {!loginUser ? (
-          <Route exact path="/account/signup">
+          ) : (
+            <Redirect to="/board" />
+          )}
+        </Route>
+        <Route exact path="/account/signup">
+          {!loginUser ? (
             <Signup authService={authService} />
-          </Route>
-        ) : (
-          <Redirect to="/board" />
-        )}
+          ) : (
+            <Redirect to="/board" />
+          )}
+        </Route>
         <Route exact path="/account/complete">
           <Complete />
         </Route>
-        <Route>
-          <NotFound />
+        <Route path={["*", "not-found"]}>
+          <NotFound logoutHandler={onLogout} />
         </Route>
       </Switch>
 

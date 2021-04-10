@@ -1,0 +1,49 @@
+@value fontRegular, fontMedium, weightMedium, weightBold, sizeRegular, sizeMedium from '../../common/size.css';
+@value makerWhite, makerGray, makerGreen, makerShadow from '../../common/colors.css';
+
+.container {
+  width: 100%;
+  margin-bottom: sizeMedium;
+  padding: sizeMedium;
+  border: 1px solid makerGray;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.container:hover {
+  cursor: pointer;
+  box-shadow: 4px 6px 8px 2px makerShadow;
+}
+
+.container *:hover {
+  cursor: pointer;
+}
+
+.star {
+  flex-basis: auto;
+  margin-right: sizeMedium;
+}
+
+.summary {
+  width: 80%;
+}
+
+.description {
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.description span {
+  color: makerGreen;
+  font-size: fontRegular;
+  font-weight: weightMedium;
+}
+
+.name span {
+  color: makerGreen;
+  font-size: fontMedium;
+  font-weight: weightBold;
+}
