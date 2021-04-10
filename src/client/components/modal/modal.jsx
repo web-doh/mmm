@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import CancelButton from "../button/cancel_button";
 import Popup from "../popup/popup";
@@ -13,7 +13,6 @@ const Modal = ({ isPopup, Content }) => {
   }, []);
   const onCancel = useCallback(() => {
     setConfirm(false);
-    console.log(confirm, "click cancel");
   }, []);
   const clickHandler = useCallback(() => {
     isPopup ? setConfirm(true) : onClose();
@@ -28,7 +27,15 @@ const Modal = ({ isPopup, Content }) => {
     ],
   };
 
-  const preventEvent = useCallback((e) => e.stopPropagation());
+  const preventEvent = useCallback((e) => e.stopPropagation(), []);
+
+  useEffect(() => {
+    document.body.style.cssText = "overflow:hidden";
+
+    return () => {
+      document.body.style.cssText = `overflow: auto`;
+    };
+  }, []);
 
   return (
     <div className={styles.background} onClick={clickHandler}>

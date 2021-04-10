@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "react-feather";
 import CancelButton from "../../components/button/cancel_button";
 import styles from "../item_maker/item_maker.module.css";
@@ -6,6 +6,7 @@ import useForm from "../../lib/useForm";
 import { validateItem } from "../../lib/validate";
 
 const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
+  const formRef = useRef();
   const [files, setFiles] = useState(item.file);
   const { errors, handleChange, handleSubmit } = useForm({
     initialValues: item,
@@ -39,6 +40,10 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
   useEffect(() => {
     handleChange({ name: "file", value: files });
   }, [files]);
+
+  useEffect(() => {
+    errors.type && formRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [errors.type]);
 
   return (
     <>
@@ -87,7 +92,10 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
               />
             </div>
           </section>
-          <section className={`${styles.container} ${styles.right}`}>
+          <section
+            className={`${styles.container} ${styles.right}`}
+            ref={formRef}
+          >
             <ul className={styles.list}>
               <li className={`${styles.listItem} ${styles.select}`}>
                 <label
@@ -232,13 +240,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
               </p>
             </ul>
 
-            <button
-              type="submit"
-              className={styles.button}
-              onClick={() => {
-                console.log(errors);
-              }}
-            >
+            <button type="submit" className={styles.button}>
               Modify
             </button>
           </section>

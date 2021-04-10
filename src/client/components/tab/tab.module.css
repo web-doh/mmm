@@ -1,10 +1,10 @@
-@value sizeSmall, sizeRegular, fontMedium, weightBold, borderRadius from '../../common/size.css';
+@value sizeSmall, sizeRegular, fontRegular, weightBold, borderRadius from '../../common/size.css';
 @value makerBlack, makerPurple, makerLightPurple from '../../common/colors.css';
 
 .container {
-  width: 5rem;
+  width: 4.5rem;
   height: 2rem;
-  margin: 0 sizeSmall;
+  margin: 0 -0.35rem;
   border: 2px solid makerBlack;
   border-bottom: none;
   border-radius: borderRadius borderRadius 0 0;
@@ -14,6 +14,14 @@
   transition: all 150ms ease-in-out;
 }
 
+.container:first-child {
+  margin-left: sizeSmall;
+}
+
+.container:last-child {
+  margin-right: sizeSmall;
+}
+
 .selected {
   height: 2.7rem;
   background-color: makerPurple;
@@ -21,6 +29,6 @@
 
 .button {
   width: 100%;
-  font-size: fontMedium;
+  font-size: fontRegular;
   font-weight: weightBold;
 }

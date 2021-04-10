@@ -3,8 +3,10 @@ import { Send, Image } from "react-feather";
 import { useParams, useHistory } from "react-router";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { itemsState } from "../../atoms/atoms";
+import NotFound from "../../pages/not_found/not_found";
 import CancelButton from "../button/cancel_button";
 import LinkButton from "../button/link_button";
+import SaveButton from "../button/save_button";
 import StarButton from "../button/star_button";
 import SubmitButton from "../button/submit_button";
 import Popup from "../popup/popup";
@@ -16,6 +18,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
 
   if (!item) {
     history.push("/not-found");
+    return <NotFound />;
   }
 
   const {
@@ -68,14 +71,15 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
   };
 
   return (
-    <>
+    <section className={styles.container} id="modal">
       <header className={styles.header}>
         <div className={styles.name}>
           <h4>{name}</h4>
           <div className={styles.icons}>
-            <button className={styles.send}>
+            {/* <button className={styles.send}>
               <Send />
-            </button>
+            </button> */}
+            <SaveButton name={name} tagId="modal" imgs={file} />
             <div className={styles.star}>
               <StarButton id={_id} isLiked={isLiked} likeItem={likeItem} />
             </div>
@@ -91,7 +95,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
             }`}
           >
             {file[0].url ? (
-              <img src={file[0].url} alt="material image1" />
+              <img id="img0" src={file[0].url} alt="material image1" />
             ) : (
               <Image />
             )}
@@ -102,7 +106,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
             }`}
           >
             {file[1].url ? (
-              <img src={file[1].url} alt="material image2" />
+              <img id="img1" src={file[1].url} alt="material image2" />
             ) : (
               <Image />
             )}
@@ -113,7 +117,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
             }`}
           >
             {file[2].url ? (
-              <img src={file[2].url} alt="material image3" />
+              <img id="img2" src={file[2].url} alt="material image3" />
             ) : (
               <Image />
             )}
@@ -156,7 +160,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
         </section>
       </section>
       {isPopup && <Popup contents={confirmPopup} />}
-    </>
+    </section>
   );
 };
 

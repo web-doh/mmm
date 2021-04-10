@@ -1,12 +1,28 @@
 import { atom } from "recoil";
 
-export const userState = atom({
-  key: "userState",
-  default: { _id: "", username: "", isAuthenticated: false },
+export const itemsState = atom({
+  key: "itemsState",
+  default: [
+    {
+      _id: "",
+      name: "",
+      type: "",
+      size: "-",
+      price: "-",
+      manufacture: "-",
+      seller: "-",
+      contact: "-",
+      email: "-",
+      project: "-",
+      remarks: "-",
+      file: [{ url: "" }, { url: "" }, { url: "" }],
+      isLiked: false,
+    },
+  ],
 });
 
-export const itemsState = atom({
-  key: "itemState",
+export const resultsState = atom({
+  key: "resultsState",
   default: [
     {
       _id: "",

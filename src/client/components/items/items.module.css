@@ -1,12 +1,12 @@
 @value sizeLarge from '../../common/size.css';
 
 .container {
+  padding-bottom: 3rem;
   display: grid;
   gap: sizeLarge;
   grid-template-columns: repeat(auto-fill, 18rem);
   justify-content: center;
   height: 100%;
-  transition: all 200ms ease-in-out;
 }
 
 .empty {

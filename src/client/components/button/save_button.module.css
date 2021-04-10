@@ -1,0 +1,52 @@
+@value sizeRegular, mediaQuery from "../../common/size.css";
+
+.button {
+  margin-left: sizeRegular;
+}
+
+.button svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.button svg:hover {
+  cursor: pointer;
+  animation: down 200ms linear 2;
+}
+
+@keyframes down {
+  0% {
+    transform: scaleY(0.9);
+  }
+  50% {
+    transform: scaleY(0.8);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.loading {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 3px solid makerGray;
+  border-top: 3px solid makerDarkG;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: mediaQuery) {
+  .button {
+    display: none;
+  }
+}
