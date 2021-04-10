@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useRef, useEffect, useState } from "react";
 import { ChevronDown } from "react-feather";
 import CancelButton from "../../components/button/cancel_button";
 import styles from "./item_maker.module.css";
 import useForm from "../../lib/useForm";
 import { validateItem } from "../../lib/validate";
 
-const ItemMaker = ({ FileInput, addItem, isPopup }) => {
+const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
+  const formRef = useRef();
+
   const [files, setFiles] = useState([
     { url: null },
     { url: null },
@@ -50,6 +52,10 @@ const ItemMaker = ({ FileInput, addItem, isPopup }) => {
   useEffect(() => {
     handleChange({ name: "file", value: files });
   }, [files]);
+
+  useEffect(() => {
+    errors.type && formRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [errors.type]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -96,7 +102,10 @@ const ItemMaker = ({ FileInput, addItem, isPopup }) => {
             />
           </div>
         </section>
-        <section className={`${styles.container} ${styles.right}`}>
+        <section
+          className={`${styles.container} ${styles.right}`}
+          ref={formRef}
+        >
           <ul className={styles.list}>
             <li className={`${styles.listItem} ${styles.select}`}>
               <label
@@ -239,6 +248,6 @@ const ItemMaker = ({ FileInput, addItem, isPopup }) => {
       </section>
     </form>
   );
-};
+});
 
 export default ItemMaker;

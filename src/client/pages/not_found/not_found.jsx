@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import LinkButton from "../../components/button/link_button";
 import logo from "../../assets/mini_logo.png";
 import styles from "./not_found.module.css";
 
-const NotFound = () => {
+const NotFound = memo(() => {
   return (
     <div className={styles.background}>
       <section className={styles.container}>
@@ -20,6 +20,6 @@ const NotFound = () => {
       </section>
     </div>
   );
-};
+});
 
 export default NotFound;

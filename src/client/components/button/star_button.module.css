@@ -9,7 +9,7 @@
   border: 2px solid makerBlack;
   border-radius: 50%;
   background-color: makerWhite;
-  filter: makerSmallShadow;
+  box-shadow: makerSmallShadow;
 }
 
 .star svg {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import IntroCard from "../intro_card/intro_card";
 import styles from "./intro_cards.module.css";
 import intro1 from "../../assets/intro1.png";

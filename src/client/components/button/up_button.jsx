@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from "react";
 import { ArrowUp } from "react-feather";
 import styles from "./up_button.module.css";
 
-const UpButton = memo((props) => {
+const UpButton = (props) => {
   const [isShow, setIsShow] = useState(false);
   const checkScrollTop = (e) => {
     if (!isShow && window.scrollY > 400) {
@@ -28,6 +28,6 @@ const UpButton = memo((props) => {
       <ArrowUp />
     </button>
   );
-});
+};
 
 export default UpButton;

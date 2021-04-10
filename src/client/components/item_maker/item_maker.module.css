@@ -251,4 +251,8 @@
   .list > .errorMsg {
     transform: none;
   }
+
+  .remarks {
+    width: 100%;
+  }
 }

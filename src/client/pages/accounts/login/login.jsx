@@ -1,7 +1,5 @@
 import React, { useCallback, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { userState } from "../../../atoms/atoms";
 import LoginForm from "../../../components/login_form/loginForm";
 import AuthModal from "../../../components/auth_modal/auth_modal";
 import Popup from "../../../components/popup/popup";

@@ -4,7 +4,7 @@
 @value mediaMobile from './common/size.css';
 
 html {
-  background-color: makerLightBack;
+  background: left top / cover url("./assets/back.png");
 }
 
 body {

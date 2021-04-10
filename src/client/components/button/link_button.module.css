@@ -1,4 +1,4 @@
-@value makerBlack, makerWhite, makerShadow from '../../common/colors.css';
+@value makerBlack, makerWhite from '../../common/colors.css';
 @value borderRadius, fontMedium, weightExtraBold from '../../common/size.css';
 
 .button {

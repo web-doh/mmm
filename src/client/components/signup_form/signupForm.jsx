@@ -1,12 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { Lock, Mail, User } from "react-feather";
-import { registerState } from "../../atoms/atoms";
 import useForm from "../../lib/useForm";
 import { validateSignup } from "../../lib/validate";
 import SubmitButton from "../button/submit_button";
 import styles from "./signupForm.module.css";
 
-const SignupForm = ({ onRegister }) => {
+const SignupForm = memo(({ onRegister }) => {
   const {
     data: userInfo,
     errors,
@@ -93,6 +92,6 @@ const SignupForm = ({ onRegister }) => {
       <SubmitButton text="Register" isSubmitting={submitting} />
     </form>
   );
-};
+});
 
 export default SignupForm;

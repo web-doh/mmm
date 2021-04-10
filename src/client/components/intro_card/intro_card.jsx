@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { memo } from "react";
 import { ChevronRight } from "react-feather";
 import styles from "./intro_card.module.css";
 
-const IntroCard = ({ contents: { description, color, image } }) => {
+const IntroCard = memo(({ contents: { description, color, image } }) => {
   return (
     <li
       className={
@@ -30,6 +30,6 @@ const IntroCard = ({ contents: { description, color, image } }) => {
       </div>
     </li>
   );
-};
+});
 
 export default IntroCard;

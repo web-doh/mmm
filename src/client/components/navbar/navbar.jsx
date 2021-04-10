@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { X } from "react-feather";
 import styles from "./navbar.module.css";
@@ -9,7 +9,7 @@ const Navbar = ({ isOpen, onOpenHandler, logoutHandler }) => {
   const location = useLocation().pathname.replace("/", "");
   const [isPopup, setIsPopup] = useState(false);
   const username = localStorage.getItem("username");
-  const menus = ["board", "search", "favorites", "my page"];
+  const menus = ["board", "search", "favorites"];
 
   const onClickHandler = () => {
     onOpenHandler(false);
@@ -26,6 +26,8 @@ const Navbar = ({ isOpen, onOpenHandler, logoutHandler }) => {
     setIsPopup(false);
   };
 
+  const preventEvent = useCallback((e) => e.stopPropagation());
+
   const confirmPopup = {
     title: "Are you sure",
     info: "Do you want to log out?",
@@ -36,8 +38,11 @@ const Navbar = ({ isOpen, onOpenHandler, logoutHandler }) => {
   };
 
   return (
-    <div className={`${styles.background} ${isOpen && styles.show}`}>
-      <section className={styles.contents}>
+    <div
+      className={`${styles.background} ${isOpen && styles.show}`}
+      onClick={onClickHandler}
+    >
+      <section className={styles.contents} onClick={preventEvent}>
         <header className={styles.header}>
           <button className={styles.cancel} onClick={onClickHandler}>
             <X />

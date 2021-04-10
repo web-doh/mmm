@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./popup.module.css";
 
-const Popup = ({ contents: { title, info, buttons, clickHandler } }) => {
+const Popup = memo(({ contents: { title, info, buttons, clickHandler } }) => {
   return (
     <section className={styles.container}>
       <div className={styles.window}>
@@ -22,6 +22,6 @@ const Popup = ({ contents: { title, info, buttons, clickHandler } }) => {
       </div>
     </section>
   );
-};
+});
 
 export default Popup;

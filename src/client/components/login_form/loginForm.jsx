@@ -1,6 +1,5 @@
 import React from "react";
 import { Lock, Mail } from "react-feather";
-import { loginState } from "../../atoms/atoms";
 import useForm from "../../lib/useForm";
 import { validateLogin } from "../../lib/validate";
 import SubmitButton from "../button/submit_button";

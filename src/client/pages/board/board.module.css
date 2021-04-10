@@ -15,7 +15,7 @@
   background-color: makerYellow;
   display: flex;
   align-items: center;
-  filter: makerSmallShadow;
+  box-shadow: makerSmallShadow;
   transform: translateY(-2rem);
   transition: all 150ms linear;
 }

@@ -1,5 +1,5 @@
 @value sizeSmall, fontRegular, fontMedium, borderRadius from '../../common/size.css';
-@value makerWhite from '../../common/colors.css';
+@value makerWhite, makerLightBack from '../../common/colors.css';
 
 .container {
   height: 16rem;
@@ -12,7 +12,7 @@
 .item {
   overflow: hidden;
   position: relative;
-  background-image: linear-gradient(#f1f3f5 100%, transparent 0);
+  background-image: linear-gradient(makerLightBack 100%, transparent 0);
 }
 
 .item::before {

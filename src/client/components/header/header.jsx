@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { Menu, Search } from "react-feather";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/mini_logo.png";
 import styles from "./header.module.css";
 
-const Header = ({ search, onOpenHandler }) => {
+const Header = memo(({ onOpenHandler }) => {
   const location = useLocation();
   let path = location.pathname;
 
@@ -40,6 +40,6 @@ const Header = ({ search, onOpenHandler }) => {
       </div>
     </header>
   );
-};
+});
 
 export default Header;

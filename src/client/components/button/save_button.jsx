@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import styles from "./save_button.module.css";
@@ -17,11 +17,8 @@ const getRelativeSize = (childId, parent) => {
   return { x, y, width, height };
 };
 
-const SaveButton = ({ name, tagId, imgs }) => {
-  const [isSaved, setIsSaved] = useState(false);
-
+const SaveButton = memo(({ name, tagId, imgs }) => {
   const saveToPdf = () => {
-    setIsSaved(true);
     const screenshot = document.querySelector(`#${tagId}`);
     const size = screenshot.getBoundingClientRect();
 
@@ -46,17 +43,13 @@ const SaveButton = ({ name, tagId, imgs }) => {
 
       pdf.save(`${name}.pdf`);
     });
-    setIsSaved(false);
   };
 
   return (
-    <>
-      <button className={styles.button} onClick={saveToPdf}>
-        <Download />
-      </button>
-      {isSaved && <div className={styles.loading}></div>}
-    </>
+    <button className={styles.button} onClick={saveToPdf}>
+      <Download />
+    </button>
   );
-};
+});
 
 export default SaveButton;

@@ -61,6 +61,10 @@ textarea::placeholder {
   color: #888c99;
 }
 
+::placeholder {
+  text-overflow: ellipsis;
+}
+
 select {
   width: 100%;
   padding: sizeRegular sizeMedium;
@@ -72,8 +76,8 @@ select {
   appearance: none;
 }
 
-select::-ms-expand{
-  display:none;
+select::-ms-expand {
+  display: none;
 }
 
 button {

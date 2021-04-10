@@ -11,7 +11,7 @@
 
 .button svg:hover {
   cursor: pointer;
-  animation: down 200ms linear 2;
+  animation: down 300ms linear 2;
 }
 
 @keyframes down {
@@ -23,25 +23,6 @@
   }
   100% {
     transform: scaleY(1);
-  }
-}
-
-.loading {
-  position: absolute;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  border: 3px solid makerGray;
-  border-top: 3px solid makerDarkG;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }
 

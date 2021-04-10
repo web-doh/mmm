@@ -9,7 +9,7 @@
   border: 2px solid makerBlack;
   border-radius: borderRadius;
   background-color: makerWhite;
-  filter: makerBigShadow;
+  box-shadow: makerBigShadow;
   transition: all 200ms ease-in-out;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .container:hover {
-  box-shadow: 4px 6px 8px 2px makerShadow;
+  box-shadow: makerBigShadow, 4px 8px 8px 2px makerShadow;
 }
 
 .img {

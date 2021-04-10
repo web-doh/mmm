@@ -14,10 +14,10 @@ const ImageFileInput = memo(({ imageUploader, url, onFileChange }) => {
   const onChange = async (event) => {
     setIsLoading(true);
     const uploaded = await imageUploader.upload(event.target.files[0]);
-    setIsLoading(false);
     onFileChange({
       url: uploaded.url,
     });
+    setIsLoading(false);
   };
 
   return (

@@ -1,16 +1,12 @@
-import React, { useCallback } from "react";
+import React, { memo } from "react";
 import styles from "./star_button.module.css";
 import { Star } from "react-feather";
-import { useRecoilState } from "recoil";
-import { itemsState } from "../../atoms/atoms";
 
-const StarButton = ({ id, isLiked, likeItem }) => {
-  const [items, setItems] = useRecoilState(itemsState);
-
-  const toggleLiked = useCallback((e) => {
+const StarButton = memo(({ id, isLiked, likeItem }) => {
+  const toggleLiked = (e) => {
     e.preventDefault();
     likeItem(id);
-  }, []);
+  };
 
   return (
     <button
@@ -21,6 +17,6 @@ const StarButton = ({ id, isLiked, likeItem }) => {
       <Star />
     </button>
   );
-};
+});
 
 export default StarButton;
