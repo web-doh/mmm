@@ -3,6 +3,7 @@ import webpack from "webpack";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 function getClientEnv() {
@@ -50,7 +51,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "style-loader",
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: "css-loader",
@@ -81,7 +82,7 @@ module.exports = {
 
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
   },
 
   plugins: [
@@ -93,6 +94,8 @@ module.exports = {
       template: "./public/index.html",
       filename: "index.html",
     }),
+
+    new MiniCssExtractPlugin(),
   ],
 
   stats: {

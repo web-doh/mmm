@@ -4,7 +4,6 @@ import { itemsState, optionState } from "../../atoms/atoms";
 import { Plus } from "react-feather";
 import TabBar from "../../components/tab_bar/tab_bar";
 import Template from "../../components/template/template";
-import styles from "./favorites.module.css";
 import Items from "../../components/items/items";
 
 const Favorites = ({ likeItem, isLoading, logoutHandler }) => {
