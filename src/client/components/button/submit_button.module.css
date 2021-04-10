@@ -1,4 +1,4 @@
-@value makerWhite, makerBlack, makerGreen, makerShadow from '../../common/colors.css';
+@value makerWhite, makerBlack, makerGreen from '../../common/colors.css';
 @value sizeRegular, borderRadius, fontMedium, weightBold from '../../common/size.css';
 
 .button {
@@ -26,27 +26,6 @@
   background-color: makerBlack;
 }
 
-/* .button::after {
-  content: "";
-  display: block;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  border-radius: borderRadius;
-  z-index: -1;
-  transform: translate(-100%, 0) rotate(10deg);
-  transform-origin: bottom left;
-  transition: transform 300ms ease-out;
-} */
-
-/* .button:hover::after {
-  background-color: makerBlack;
-  transform: translate(0, 0);
-} */
-
 .button:hover {
-  /* border: 2px solid transparent;
-  border-bottom: 4px solid transparent;
-  color: makerWhite; */
   transform: scale(1.02);
 }

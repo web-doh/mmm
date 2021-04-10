@@ -18,7 +18,7 @@ import webpack from "webpack";
 
 import api from "./routes";
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5000;
 
 const app = express();
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { memo } from "react";
 import Introduction from "../introduction/introduction";
 
-const Introductions = ({ contents }) => {
+const Introductions = memo(({ contents }) => {
   return (
     <ul>
       {contents.map((item) => (
@@ -9,6 +9,6 @@ const Introductions = ({ contents }) => {
       ))}
     </ul>
   );
-};
+});
 
 export default Introductions;

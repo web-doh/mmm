@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { userState } from "../../../atoms/atoms";
 import success from "../../../assets/success.png";
 import LinkButton from "../../../components/button/link_button";
 import styles from "./complete.module.css";

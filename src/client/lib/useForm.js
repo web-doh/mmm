@@ -13,18 +13,17 @@ function useForm({ initialValues, onSubmit, validate }) {
   const handleSubmit = async (e) => {
     setSubmitting(true);
     e.preventDefault();
-    await new Promise((r) => setTimeout(r, 1000));
-    setErrors(validate(data));
+    validate && setErrors(validate(data));
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (submitting) {
       if (Object.keys(errors).length === 0) {
         onSubmit(data);
       }
       setSubmitting(false);
     }
-  }, [errors]);
+  }, [errors, submitting]);
 
   return {
     data,

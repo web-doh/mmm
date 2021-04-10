@@ -128,7 +128,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
             {description.map((key) => (
               <li key={key} className={styles.listItem}>
                 <p className={styles.title}>{key}</p>
-                <p className={styles.description}>{item[key]}</p>
+                <p className={styles.description}>{item[key] || "-"} </p>
               </li>
             ))}
             <li className={styles.listItem}>
@@ -137,7 +137,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
                 className={`${styles.description} ${styles.remarks}`}
                 readOnly
                 disabled
-                value={item["remarks"]}
+                value={item["remarks"] || "-"}
               ></textarea>
             </li>
           </ul>

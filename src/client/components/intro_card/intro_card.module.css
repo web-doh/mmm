@@ -56,8 +56,7 @@
   height: auto;
   border: 2px solid makerBlack;
   border-radius: borderRadius;
-  filter: makerBigShadow;
-  box-shadow: 0.125rem 0.25rem 0.5rem makerShadow;
+  box-shadow: makerBigShadow, 0.25rem 0.5rem 0.5rem makerShadow;
   backface-visibility: hidden;
 }
 
@@ -93,7 +92,7 @@
   background-color: makerGreen;
   border-bottom: none;
   border-radius: borderRadius borderRadius 0 0;
-  filter: none;
+  box-shadow: none;
 }
 
 @media screen and (max-width: mediaQuery) {
@@ -114,7 +113,7 @@
     border-bottom: 2px solid makerBlack;
     border-right: none;
     border-radius: borderRadius 0 0 borderRadius;
-    filter: makerBigShadow;
+    box-shadow: makerBigShadow;
   }
 }
 

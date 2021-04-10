@@ -12,6 +12,7 @@
 @value makerPurple: #8094ff;
 @value makerLightPurple: #e9e7fc;
 @value makerBack: rgba(10, 10, 10, 0.6);
-@value makerSmallShadow: drop-shadow(0px 2px 0px makerBlack);
-@value makerBigShadow: drop-shadow(0px 4px 0px makerBlack);
+@value makerLightBack: #f1f3f5;
+@value makerSmallShadow: 0px 2px 0px makerBlack;
+@value makerBigShadow: 0px 4px 0px makerBlack;
 @value makerShadow: rgba(150,150,150,0.15);
