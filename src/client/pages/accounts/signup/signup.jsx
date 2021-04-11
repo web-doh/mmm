@@ -9,14 +9,14 @@ const Signup = ({ authService }) => {
   const history = useHistory();
   const [error, setError] = useState("");
 
-  const cancelHandler = () => {
+  const clickHandler = () => {
     setError("");
   };
 
-  const errorPopup = {
-    title: "Duplicate Id",
+  const popupContents = {
+    title: "Signup Error!",
     info: error,
-    buttons: [{ id: "cancel", name: "Cancel", cancelHandler }],
+    buttons: [{ id: "cancel", name: "Cancel", clickHandler }],
   };
 
   const handleRegister = async (userInfo) => {
@@ -44,7 +44,7 @@ const Signup = ({ authService }) => {
       <div className={styles.modal}>
         <AuthModal title="Sign up" Content={Content} isPopup={true} />
       </div>
-      {error && <Popup contents={errorPopup} />}
+      {error && <Popup contents={popupContents} />}
     </section>
   );
 };

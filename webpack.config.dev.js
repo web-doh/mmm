@@ -1,6 +1,6 @@
-import dotenv from "dotenv";
-import path from "path";
-import webpack from "webpack";
+const dotenv = require("dotenv");
+const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 dotenv.config();
 
@@ -31,9 +31,9 @@ module.exports = {
 
   devServer: {
     hot: true,
-    filename: "bundle.js",
     publicPath: "/",
-    contentBase: "./public",
+    filename: "bundle.js",
+    contentBase: path.resolve(__dirname, "public"),
     proxy: {
       "**": { target: "http://localhost:5000", changeOrigin: true },
     },
@@ -105,9 +105,7 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({
-      React: "react",
-    }),
+
     new HtmlWebpackPlugin({
       template: "./public/index.html",
       filename: "index.html",
@@ -115,6 +113,7 @@ module.exports = {
 
     new webpack.ProvidePlugin({
       process: "process/browser",
+      React: "react",
     }),
     new webpack.DefinePlugin(clientEnv),
   ],

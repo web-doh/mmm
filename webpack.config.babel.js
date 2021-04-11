@@ -36,26 +36,6 @@ module.exports = {
     extensions: [".js", ".jsx"],
   },
 
-  devServer: {
-    hot: true,
-    proxy: {
-      "**": { target: "http://localhost:5000", changeOrigin: true },
-    },
-    port: 4000,
-    stats: {
-      // 콘솔 로그를 최소화
-      assets: false,
-      colors: true,
-      version: false,
-      hash: false,
-      timings: false,
-      chunks: false,
-      chunkModules: false,
-      children: true,
-    },
-    historyApiFallback: true,
-  },
-
   module: {
     rules: [
       {

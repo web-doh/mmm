@@ -19,17 +19,7 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 
-const corsOptions = {
-  origin: [
-    "http://localhost:4000",
-    "https://my-materials-manager.herokuapp.com",
-    "https://my-materials-manager.netlify.app",
-    "https://api.cloudinary.com/v1_1/dx0qrmrs6/image/upload",
-  ],
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));
