@@ -1,6 +1,8 @@
 import axios from "axios";
 import { setTokenToHeader } from "../lib";
 
+axios.defaults.baseURL = "https://my-materials-manager.herokuapp.com";
+
 export default class ItemRepository {
   /* Get Items List */
   initialItems = async (userId, onUpdate) => {
@@ -8,9 +10,7 @@ export default class ItemRepository {
     setTokenToHeader(token);
 
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_PROD_URI}/api/board/${userId}`
-      );
+      const response = await axios.get(`/api/board/${userId}`);
 
       const initialItems = response.data.items || [];
       onUpdate(initialItems);
@@ -29,10 +29,7 @@ export default class ItemRepository {
     setTokenToHeader(token);
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_PROD_URI}/api/board/item`,
-        { contents }
-      );
+      const response = await axios.post(`/api/board/item`, { contents });
 
       return response;
     } catch (err) {
@@ -47,10 +44,7 @@ export default class ItemRepository {
     setTokenToHeader(token);
 
     try {
-      const response = await axios.patch(
-        `${process.env.REACT_APP_PROD_URI}/api/board/item/${id}`,
-        { contents }
-      );
+      const response = await axios.patch(`/api/board/item/${id}`, { contents });
 
       return response;
     } catch (err) {
@@ -64,9 +58,7 @@ export default class ItemRepository {
     setTokenToHeader(token);
 
     try {
-      const response = await axios.delete(
-        `${process.env.REACT_APP_PROD_URI}/api/board/item/${id}`
-      );
+      const response = await axios.delete(`/api/board/item/${id}`);
 
       return response;
     } catch (err) {
@@ -80,9 +72,7 @@ export default class ItemRepository {
     setTokenToHeader(token);
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_PROD_URI}/api/board/item/${id}/like`
-      );
+      const response = await axios.post(`/api/board/item/${id}/like`);
 
       return response;
     } catch (err) {

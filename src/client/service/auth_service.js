@@ -1,14 +1,13 @@
 import axios from "axios";
 import { loginState } from "../atoms/atoms";
 
+axios.defaults.baseURL = "https://my-materials-manager.herokuapp.com";
+
 /* Register */
 export default class AuthService {
   register = async (userInfo) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_PROD_URI}/api/account/signup`,
-        userInfo
-      );
+      const response = await axios.post(`/api/account/signup`, userInfo);
 
       return response;
     } catch (err) {
@@ -19,10 +18,7 @@ export default class AuthService {
   /* Login */
   login = async (userInfo) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_PROD_URI}/api/account/login`,
-        userInfo
-      );
+      const response = await axios.post(`/api/account/login`, userInfo);
 
       return response;
     } catch (err) {

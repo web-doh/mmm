@@ -33,7 +33,7 @@ module.exports = {
     hot: true,
     filename: "bundle.js",
     publicPath: "/",
-    contentBase: "/dist/",
+    contentBase: "./public",
     proxy: {
       "**": { target: "http://localhost:5000", changeOrigin: true },
     },
@@ -112,9 +112,10 @@ module.exports = {
       template: "./public/index.html",
       filename: "index.html",
     }),
-    // new webpack.ProvidePlugin({
-    //   process: "process/browser",
-    // }),
+
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+    }),
     new webpack.DefinePlugin(clientEnv),
   ],
 
