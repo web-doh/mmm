@@ -13,9 +13,6 @@ import cors from "cors";
 import logger from "morgan";
 import "./config/mongoose";
 
-import WebpackDevServer from "webpack-dev-server";
-import webpack from "webpack";
-
 import api from "./routes";
 
 const port = process.env.PORT || 5000;
@@ -59,20 +56,5 @@ app.use(function (err, req, res, next) {
 app.listen(port, () => {
   console.log(`server on ${port}`);
 });
-
-if (process.env.WEBPACK_ENV === "development") {
-  console.log("Server is running on development mode");
-  const config = require("../../webpack.config.dev.js");
-  const devPort = config.devServer.port;
-  const compiler = webpack(config);
-  const devServer = new WebpackDevServer(compiler, config.devServer);
-  devServer.listen(devPort, "localhost", (err) => {
-    if (err) {
-      console.log("webpack-dev-server failed to start", err);
-    } else {
-      console.log("webpack-dev-server is listening on port", devPort);
-    }
-  });
-}
 
 export default app;

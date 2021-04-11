@@ -3,6 +3,7 @@ import webpack from "webpack";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 function getClientEnv() {
@@ -26,12 +27,33 @@ const clientEnv = getClientEnv();
 module.exports = {
   entry: ["./src/client/index.js", "./src/client/index.module.css"],
   output: {
-    path: path.resolve(__dirname, "public/"),
+    path: path.resolve(__dirname, "public"),
+    publicPath: "/",
     filename: "bundle.js",
   },
   resolve: {
     roots: [__dirname, path.resolve(__dirname, "src/client")],
     extensions: [".js", ".jsx"],
+  },
+
+  devServer: {
+    hot: true,
+    proxy: {
+      "**": { target: "http://localhost:5000", changeOrigin: true },
+    },
+    port: 4000,
+    stats: {
+      // 콘솔 로그를 최소화
+      assets: false,
+      colors: true,
+      version: false,
+      hash: false,
+      timings: false,
+      chunks: false,
+      chunkModules: false,
+      children: true,
+    },
+    historyApiFallback: true,
   },
 
   module: {
@@ -50,7 +72,7 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "style-loader",
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: "css-loader",
@@ -81,18 +103,21 @@ module.exports = {
 
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
   },
 
   plugins: [
     new webpack.ProvidePlugin({
       process: "process/browser",
+      React: "react",
     }),
 
     new HtmlWebpackPlugin({
       template: "./public/index.html",
       filename: "index.html",
     }),
+
+    new MiniCssExtractPlugin(),
   ],
 
   stats: {

@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from "react";
 import UpButton from "../button/up_button";
 import Header from "../header/header";
-import Navbar from "../navBar/navbar";
+import Navbar from "../navbar/navbar";
 import styles from "./template.module.css";
 
 const Template = ({ Aside, Contents, title, logoutHandler }) => {
