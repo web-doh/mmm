@@ -17,7 +17,7 @@ const Items = ({ items, likeItem, isLoading }) => {
 
   return (
     <>
-      {items.length ? (
+      {items.length && items[0]["name"] ? (
         <ul className={styles.container}>
           {isLoading
             ? new Array(6).fill(1).map((_, i) => <ItemSkeleton key={i} />)
