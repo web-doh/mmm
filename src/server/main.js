@@ -24,7 +24,7 @@ app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 
-app.use(express.static("build"));
+app.use(express.static("public/build"));
 
 app.use("/api", api);
 

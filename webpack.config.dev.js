@@ -33,7 +33,7 @@ module.exports = {
     hot: true,
     publicPath: "/",
     filename: "bundle.js",
-    contentBase: path.resolve(__dirname, "public"),
+    contentBase: path.resolve(__dirname, "public", "build"),
     proxy: {
       "**": { target: "http://localhost:5000", changeOrigin: true },
     },
