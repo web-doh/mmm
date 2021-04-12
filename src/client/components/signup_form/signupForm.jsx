@@ -29,6 +29,7 @@ const SignupForm = memo(({ onRegister }) => {
         <div className={errors.userId ? styles.errorBox : styles.box}>
           <Mail />
           <input
+            autoComplete="off"
             className={styles.input}
             type="email"
             name="userId"
@@ -45,6 +46,7 @@ const SignupForm = memo(({ onRegister }) => {
         <div className={errors.password1 ? styles.errorBox : styles.box}>
           <Lock />
           <input
+            autoComplete="off"
             className={styles.input}
             type="password"
             name="password1"
@@ -61,6 +63,7 @@ const SignupForm = memo(({ onRegister }) => {
         <div className={errors.password2 ? styles.errorBox : styles.box}>
           <Lock />
           <input
+            autoComplete="off"
             className={styles.input}
             type="password"
             name="password2"
@@ -77,6 +80,7 @@ const SignupForm = memo(({ onRegister }) => {
         <div className={errors.username ? styles.errorBox : styles.box}>
           <User />
           <input
+            autoComplete="off"
             className={styles.input}
             type="text"
             name="username"

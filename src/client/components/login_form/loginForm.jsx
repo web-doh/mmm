@@ -24,6 +24,7 @@ const LoginForm = ({ onLogin }) => {
         <div className={errors.userId ? styles.errorBox : styles.box}>
           <Mail />
           <input
+            autoComplete="off"
             className={styles.input}
             type="email"
             name="userId"
@@ -40,6 +41,7 @@ const LoginForm = ({ onLogin }) => {
         <div className={errors.password ? styles.errorBox : styles.box}>
           <Lock />
           <input
+            autoComplete="off"
             className={styles.input}
             type="password"
             name="password"
