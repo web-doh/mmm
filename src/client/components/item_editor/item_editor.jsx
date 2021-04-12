@@ -5,10 +5,10 @@ import styles from "../item_maker/item_maker.module.css";
 import useForm from "../../lib/useForm";
 import { validateItem } from "../../lib/validate";
 
-const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
+const ItemEditor = ({ FileInput, item, editItem, isSubmitting, isPopup }) => {
   const formRef = useRef();
   const [files, setFiles] = useState(item.file);
-  const { errors, submitting, handleChange, handleSubmit } = useForm({
+  const { errors, handleChange, handleSubmit } = useForm({
     initialValues: item,
     onSubmit: editItem,
     validate: validateItem,
@@ -43,7 +43,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
 
   useEffect(() => {
     errors.type && formRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [errors.type]);
+  }, [errors.type, isSubmitting]);
 
   return (
     <>
@@ -93,12 +93,12 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
               />
             </div>
           </section>
-          <section
-            className={`${styles.container} ${styles.right}`}
-            ref={formRef}
-          >
+          <section className={`${styles.container} ${styles.right}`}>
             <ul className={styles.list}>
-              <li className={`${styles.listItem} ${styles.select}`}>
+              <li
+                className={`${styles.listItem} ${styles.select}`}
+                ref={formRef}
+              >
                 <label
                   htmlFor="type"
                   className={`${styles.required} ${styles.title}`}
@@ -251,9 +251,9 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
             <button
               type="submit"
               className={styles.button}
-              disabled={submitting}
+              disabled={isSubmitting}
             >
-              {submitting ? <div className={styles.loading}></div> : "Modify"}
+              {isSubmitting ? <div className={styles.loading}></div> : "Modify"}
             </button>
           </section>
         </section>

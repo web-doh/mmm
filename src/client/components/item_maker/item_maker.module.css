@@ -179,7 +179,7 @@
 }
 
 .button:hover {
-  transform: scale(1.02);
+  transform: scaleY(1.03);
 }
 
 .button:disabled:hover {
@@ -216,8 +216,9 @@
 }
 
 .list > .errorMsg {
-  display: block;
-  transform: translate(38%, -0.1rem);
+  width: auto;
+  display: inline-block;
+  transform: translate(68.5%, -0.3rem);
   margin-bottom: sizeRegular;
 }
 
@@ -250,6 +251,10 @@
     overflow-y: initial;
   }
 
+  .list > .errorMsg {
+    transform: translate(78.5%, -0.3rem);
+  }
+
   .input {
     transform: translateX(0px);
   }
@@ -270,7 +275,7 @@
   }
 
   .list > .errorMsg {
-    transform: none;
+    transform: translate(0, -0.3rem);
   }
 
   .remarks {

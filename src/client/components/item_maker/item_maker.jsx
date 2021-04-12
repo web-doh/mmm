@@ -5,7 +5,7 @@ import styles from "./item_maker.module.css";
 import useForm from "../../lib/useForm";
 import { validateItem } from "../../lib/validate";
 
-const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
+const ItemMaker = memo(({ FileInput, addItem, isPopup, isSubmitting }) => {
   const formRef = useRef();
 
   const [files, setFiles] = useState([
@@ -15,13 +15,7 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
   ]);
   const loginUser = localStorage.getItem("_id");
 
-  const {
-    data: item,
-    errors,
-    submitting,
-    handleChange,
-    handleSubmit,
-  } = useForm({
+  const { data: item, errors, handleChange, handleSubmit } = useForm({
     initialValues: {
       name: "",
       type: "",
@@ -55,7 +49,7 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
 
   useEffect(() => {
     errors.type && formRef.current.scrollIntoView({ behavior: "smooth" });
-  }, [errors.type]);
+  }, [errors.type, isSubmitting]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -103,12 +97,9 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
             />
           </div>
         </section>
-        <section
-          className={`${styles.container} ${styles.right}`}
-          ref={formRef}
-        >
+        <section className={`${styles.container} ${styles.right}`}>
           <ul className={styles.list}>
-            <li className={`${styles.listItem} ${styles.select}`}>
+            <li className={`${styles.listItem} ${styles.select}`} ref={formRef}>
               <label
                 htmlFor="type"
                 className={`${styles.required} ${styles.title}`}
@@ -249,8 +240,12 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
             </p>
           </ul>
 
-          <button type="submit" className={styles.button} disabled={submitting}>
-            {submitting ? <div className={styles.loading}></div> : "Add"}
+          <button
+            type="submit"
+            className={styles.button}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? <div className={styles.loading}></div> : "Add"}
           </button>
         </section>
       </section>

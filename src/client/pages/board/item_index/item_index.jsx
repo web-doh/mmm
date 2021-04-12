@@ -14,12 +14,14 @@ const ItemIndex = ({ FileInput, itemRepository, likeItem }) => {
   const [items, setItems] = useRecoilState(itemsState);
   const [modal, setModal] = useState(location.state.modal);
   const [isPopup, setIsPopup] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const selected = items.find((el) => el["_id"] === id);
 
   const createItem = useCallback(
     async (item) => {
+      setIsSubmitting(true);
       const response = await itemRepository.saveItem(item);
-
+      setIsSubmitting(false);
       if (response.data.status === "success") {
         const newItem = response.data.items;
         setItems((items) => [...items, newItem]);
@@ -35,12 +37,15 @@ const ItemIndex = ({ FileInput, itemRepository, likeItem }) => {
         alert("There is a problem with the server. Please try again later.");
       }
     },
+
     [itemRepository]
   );
 
   const editItem = useCallback(
     async (update) => {
+      setIsSubmitting(true);
       const response = await itemRepository.editItem(update);
+      setIsSubmitting(false);
       if (response.data.status === "success") {
         setItems((items) => {
           const updated = items.map((item) =>
@@ -107,6 +112,7 @@ const ItemIndex = ({ FileInput, itemRepository, likeItem }) => {
       case "maker":
         return () => (
           <ItemMaker
+            isSubmitting={isSubmitting}
             isPopup={isPopup}
             FileInput={FileInput}
             addItem={createItem}
@@ -115,6 +121,7 @@ const ItemIndex = ({ FileInput, itemRepository, likeItem }) => {
       case "editor":
         return () => (
           <ItemEditor
+            isSubmitting={isSubmitting}
             isPopup={isPopup}
             FileInput={FileInput}
             item={selected}
