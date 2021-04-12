@@ -24,7 +24,7 @@ app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));
 
-app.use(express.static("public"));
+app.use(express.static("build"));
 
 app.use("/api", api);
 
@@ -33,7 +33,9 @@ app.get("/account/complete", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "..", "public", "index.html"));
+  res.sendFile(
+    path.join(__dirname, "..", "..", "public", "build", "index.html")
+  );
 });
 
 // catch 404 and forward to error handler

@@ -27,7 +27,7 @@ const clientEnv = getClientEnv();
 module.exports = {
   entry: ["./src/client/index.js", "./src/client/index.module.css"],
   output: {
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "public", "build"),
     publicPath: "/",
     filename: "bundle.js",
   },
