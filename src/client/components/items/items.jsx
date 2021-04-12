@@ -15,25 +15,31 @@ const Items = ({ items, likeItem, isLoading }) => {
     }
   }, [items]);
 
-  return (
-    <>
-      {items.length && items[0]["name"] ? (
+  if (isLoading) {
+    return (
+      <ul className={styles.container}>
+        {new Array(6).fill(1).map((_, i) => (
+          <ItemSkeleton key={i} />
+        ))}
+      </ul>
+    );
+  } else {
+    if (items.length && items[0]["name"]) {
+      return (
         <ul className={styles.container}>
-          {isLoading
-            ? new Array(6).fill(1).map((_, i) => <ItemSkeleton key={i} />)
-            : items.map((item) => (
-                <Item key={item._id} item={item} likeItem={likeItem} />
-              ))}{" "}
+          {items.map((item) => (
+            <Item key={item._id} item={item} likeItem={likeItem} />
+          ))}
         </ul>
-      ) : option["filter"] === "All" ? (
+      );
+    } else {
+      return (
         <div className={styles.empty}>
           <h4>Empty!</h4>
         </div>
-      ) : (
-        ""
-      )}
-    </>
-  );
+      );
+    }
+  }
 };
 
 export default Items;

@@ -8,7 +8,7 @@ import { validateItem } from "../../lib/validate";
 const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
   const formRef = useRef();
   const [files, setFiles] = useState(item.file);
-  const { errors, handleChange, handleSubmit } = useForm({
+  const { errors, submitting, handleChange, handleSubmit } = useForm({
     initialValues: item,
     onSubmit: editItem,
     validate: validateItem,
@@ -57,6 +57,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
               Name
             </label>
             <input
+              autoComplete="off"
               type="text"
               name="name"
               maxLength="20"
@@ -136,6 +137,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
                   Size
                 </label>
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="size"
@@ -149,6 +151,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
                   Price
                 </label>
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="price"
@@ -162,6 +165,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
                   Manufacture
                 </label>
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="manufacture"
@@ -175,6 +179,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
                   Seller
                 </label>
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="seller"
@@ -188,6 +193,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
                   Contact
                 </label>
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="contact"
@@ -201,6 +207,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
                   Email
                 </label>
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="email"
@@ -214,6 +221,7 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
                   Project
                 </label>
                 <input
+                  autoComplete="off"
                   className={styles.input}
                   type="text"
                   name="project"
@@ -240,8 +248,12 @@ const ItemEditor = ({ isPopup, editItem, item, FileInput }) => {
               </p>
             </ul>
 
-            <button type="submit" className={styles.button}>
-              Modify
+            <button
+              type="submit"
+              className={styles.button}
+              disabled={submitting}
+            >
+              {submitting ? <div className={styles.loading}></div> : "Modify"}
             </button>
           </section>
         </section>

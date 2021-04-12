@@ -41,7 +41,7 @@ const Board = ({ likeItem, isLoading, logoutHandler }) => {
   const tabBar = useCallback(() => {
     return (
       <aside className={styles.tabBar}>
-        <TabBar items={items} />
+        <TabBar items={items} isLoading={isLoading} />
         <button
           type="button"
           className={styles.button}

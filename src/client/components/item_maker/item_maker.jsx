@@ -69,6 +69,7 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
           </label>
 
           <input
+            autoComplete="off"
             type="text"
             name="name"
             maxLength="20"
@@ -145,6 +146,7 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
                 Size
               </label>
               <input
+                autoComplete="off"
                 className={styles.input}
                 type="text"
                 name="size"
@@ -157,6 +159,7 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
                 Price
               </label>
               <input
+                autoComplete="off"
                 className={styles.input}
                 type="text"
                 name="price"
@@ -169,6 +172,7 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
                 Manufacture
               </label>
               <input
+                autoComplete="off"
                 className={styles.input}
                 type="text"
                 name="manufacture"
@@ -181,6 +185,7 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
                 Seller
               </label>
               <input
+                autoComplete="off"
                 className={styles.input}
                 type="text"
                 name="seller"
@@ -193,10 +198,11 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
                 Contact
               </label>
               <input
+                autoComplete="off"
                 className={styles.input}
                 type="text"
                 name="contact"
-                placeholder="Input manufacture"
+                placeholder="Input phone number"
                 onChange={handleChange}
               />
             </li>
@@ -205,6 +211,7 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
                 Email
               </label>
               <input
+                autoComplete="off"
                 className={styles.input}
                 type="text"
                 name="email"
@@ -217,6 +224,7 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
                 Project
               </label>
               <input
+                autoComplete="off"
                 className={styles.input}
                 type="text"
                 name="project"
@@ -241,8 +249,8 @@ const ItemMaker = memo(({ FileInput, addItem, isPopup }) => {
             </p>
           </ul>
 
-          <button type="submit" className={styles.button}>
-            Add
+          <button type="submit" className={styles.button} disabled={submitting}>
+            {submitting ? <div className={styles.loading}></div> : "Add"}
           </button>
         </section>
       </section>

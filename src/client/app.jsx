@@ -31,7 +31,7 @@ const App = ({ FileInput, authService, itemRepository }) => {
     setIsLoading(false);
 
     return () => stopSync();
-  }, [loginUser, itemRepository]);
+  }, [loginUser, location.pathname, itemRepository]);
 
   const likeItem = useCallback(
     async (id) => {

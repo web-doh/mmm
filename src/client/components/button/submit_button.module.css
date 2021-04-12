@@ -1,4 +1,4 @@
-@value makerWhite, makerBlack, makerGreen from '../../common/colors.css';
+@value makerWhite, makerBlack, makerGray, makerDarkG, makerGreen from '../../common/colors.css';
 @value sizeRegular, borderRadius, fontMedium, weightBold from '../../common/size.css';
 
 .button {
@@ -28,4 +28,26 @@
 
 .button:hover {
   transform: scale(1.02);
+}
+
+.button:disabled:hover {
+  transform: none;
+}
+
+.loading {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: 3px solid makerWhite;
+  border-top: 3px solid makerDarkG;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

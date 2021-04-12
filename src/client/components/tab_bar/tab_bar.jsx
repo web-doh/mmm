@@ -2,7 +2,7 @@ import React from "react";
 import Tab from "../tab/tab";
 import styles from "./tab_bar.module.css";
 
-const TabBar = ({ items }) => {
+const TabBar = ({ items, isLoading }) => {
   const tabs =
     items[0] &&
     items[0]["type"] &&
@@ -13,7 +13,9 @@ const TabBar = ({ items }) => {
   return (
     <ul className={styles.container}>
       <Tab name="All" />
-      {tabs && tabs.map((tab, i) => <Tab key={tab} idx={i} name={tab} />)}
+      {!isLoading &&
+        tabs &&
+        tabs.map((tab, i) => <Tab key={tab} idx={i} name={tab} />)}
     </ul>
   );
 };

@@ -1,5 +1,5 @@
 @value fontMedium, fontLarge, weightMedium, sizeSmall, sizeRegular, sizeMedium, sizeLarge, fontRegular, fontBig, weightBold, weightExtraBold, borderRadius, mediaMobile, mediaQuery from "../../common/size.css";
-@value makerWhite, makerBlack, makerPink, makerGray, makerGreen, makerYellow, makerOrange, makerBack from "../../common/colors.css";
+@value makerWhite, makerBlack, makerDarkG, makerPink, makerGray, makerGreen, makerYellow, makerOrange, makerBack from "../../common/colors.css";
 
 .form {
   width: 100%;
@@ -166,11 +166,6 @@
   cursor: text;
 }
 
-.buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
 .button {
   padding: sizeRegular;
   border: 2px solid makerBlack;
@@ -181,6 +176,32 @@
   font-size: fontRegular;
   font-weight: weightExtraBold;
   background-color: makerGreen;
+}
+
+.button:hover {
+  transform: scale(1.02);
+}
+
+.button:disabled:hover {
+  transform: none;
+}
+
+.loading {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 3px solid makerWhite;
+  border-top: 3px solid makerDarkG;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .errorMsg {

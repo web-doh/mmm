@@ -7,7 +7,7 @@ const SubmitButton = memo(({ text, color, isSubmitting }) => (
     className={`${styles.button} ${color && styles[color]}`}
     disabled={isSubmitting}
   >
-    {text}
+    {isSubmitting ? <div className={styles.loading}></div> : text}
   </button>
 ));
 
