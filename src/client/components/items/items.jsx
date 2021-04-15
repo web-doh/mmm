@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { optionState } from "../../atoms/atoms";
+import { itemFilterState } from "../../atoms/atoms";
 import Item from "../item/item";
 import ItemMaker from "../item_maker/item_maker";
 import ItemSkeleton from "../skeleton/item_skeleton";
 import styles from "./items.module.css";
 
 const Items = ({ items, likeItem, isLoading }) => {
-  const [option, setOption] = useRecoilState(optionState);
+  const [filter, setFilter] = useRecoilState(itemFilterState);
 
   useEffect(() => {
-    if (option["filter"] !== "All" && !items.length) {
-      setOption({ filter: "All", sorting: "Sort by alphabet" });
+    if (filter !== "All" && !items.length) {
+      setFilter("All");
     }
   }, [items]);
 

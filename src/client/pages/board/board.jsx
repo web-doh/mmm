@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useHistory, useLocation } from "react-router";
-import { useRecoilState } from "recoil";
-import { itemsState, optionState } from "../../atoms/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { itemsState, filteredItemsState } from "../../atoms/atoms";
 import { Plus } from "react-feather";
 import Header from "../../components/header/header";
 import Items from "../../components/items/items";
@@ -13,18 +13,7 @@ const Board = ({ likeItem, isLoading, logoutHandler }) => {
   const location = useLocation();
   const history = useHistory();
   const [items, setItems] = useRecoilState(itemsState);
-  const [option, setOption] = useRecoilState(optionState);
-  const filtered = items.filter((item) => {
-    if (option["filter"] === "All") {
-      return item;
-    } else {
-      if (item.type.includes(option["filter"])) return item;
-    }
-  });
-
-  useEffect(() => {
-    setOption({ filter: "All", sorting: "Sort by alphabet" });
-  }, []);
+  const filtered = useRecoilValue(filteredItemsState);
 
   const onClickHandler = () => {
     history.push({
@@ -33,9 +22,8 @@ const Board = ({ likeItem, isLoading, logoutHandler }) => {
     });
   };
 
-  const contents = useCallback(
-    () => <Items items={filtered} likeItem={likeItem} isLoading={isLoading} />,
-    [isLoading, filtered]
+  const contents = () => (
+    <Items items={filtered} likeItem={likeItem} isLoading={isLoading} />
   );
 
   const tabBar = useCallback(() => {

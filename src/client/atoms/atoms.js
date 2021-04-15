@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 export const itemsState = atom({
   key: "itemsState",
@@ -42,7 +42,44 @@ export const resultsState = atom({
   ],
 });
 
-export const optionState = atom({
-  key: "optionState",
-  default: { filter: "All", sorting: "Sort by alphabet" },
+export const itemFilterState = atom({
+  key: "itemFilterState",
+  default: "All",
+});
+
+export const filteredItemsState = selector({
+  key: "filteredItemsState",
+  get: ({ get }) => {
+    const filter = get(itemFilterState);
+    const list = get(itemsState);
+
+    if (filter !== "All") {
+      return list.filter((item) => item.type.includes(filter));
+    }
+
+    return list;
+  },
+});
+
+export const likedItemsState = selector({
+  key: "likedItemsState",
+  get: ({ get }) => {
+    const list = get(itemsState);
+
+    return list.filter((item) => item.isLiked);
+  },
+});
+
+export const filteredLikedState = selector({
+  key: "filteredLikedState",
+  get: ({ get }) => {
+    const filter = get(itemFilterState);
+    const list = get(likedItemsState);
+
+    if (filter !== "All") {
+      return list.filter((item) => item.type.includes(filter));
+    }
+
+    return list;
+  },
 });
