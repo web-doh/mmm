@@ -25,7 +25,7 @@ function getClientEnv() {
 const clientEnv = getClientEnv();
 
 module.exports = {
-  entry: ["./src/client/index.js", "./src/client/index.module.css"],
+  entry: "./src/client/index.js",
   output: {
     path: path.resolve(__dirname, "public", "build"),
     publicPath: "/",
@@ -57,7 +57,6 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              importLoaders: 1,
               modules: true,
             },
           },
@@ -98,6 +97,7 @@ module.exports = {
     }),
 
     new MiniCssExtractPlugin(),
+    new webpack.DefinePlugin(clientEnv),
   ],
 
   stats: {

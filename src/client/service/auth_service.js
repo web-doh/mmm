@@ -1,7 +1,7 @@
 import axios from "axios";
 import { loginState } from "../atoms/atoms";
 
-axios.defaults.baseURL = "https://my-materials-manager.herokuapp.com";
+axios.defaults.baseURL = process.env.REACT_APP_PROD_URI;
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 
 /* Register */

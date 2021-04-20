@@ -23,7 +23,7 @@ function getClientEnv() {
 const clientEnv = getClientEnv();
 
 module.exports = {
-  entry: ["./src/client/index.js", "./src/client/index.module.css"],
+  entry: "./src/client/index.js",
   output: {
     path: "/",
     filename: "bundle.js",
@@ -72,7 +72,6 @@ module.exports = {
           {
             loader: "css-loader",
             options: {
-              importLoaders: 1,
               modules: {
                 localIdentName: "[name]__[local]--[hash:base64:5]",
               },
