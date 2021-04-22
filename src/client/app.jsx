@@ -21,17 +21,9 @@ const App = ({ FileInput, authService, itemRepository }) => {
   const loginUser = localStorage.getItem("_id");
   const background = location.state && location.state.background;
 
-  useEffect(async () => {
-    if (!loginUser || location.pathname === "/") return;
-
-    setIsLoading(true);
-    const stopSync = await itemRepository.initialItems(loginUser, (items) =>
-      setItems(items)
-    );
-    setIsLoading(false);
-
-    return () => stopSync();
-  }, [loginUser, location.pathname, itemRepository]);
+  const onLogout = useCallback(() => {
+    authService.logout();
+  }, [authService]);
 
   const likeItem = useCallback(
     async (id) => {
@@ -66,9 +58,21 @@ const App = ({ FileInput, authService, itemRepository }) => {
     [itemRepository]
   );
 
-  const onLogout = useCallback(() => {
-    authService.logout();
-  }, [authService]);
+  useEffect(async () => {
+    if (!loginUser || location.pathname === "/") return;
+
+    setIsLoading(true);
+    const stopSync = await itemRepository.initialItems(loginUser, (items) =>
+      setItems(items)
+    );
+    setIsLoading(false);
+
+    if (!stopSync) {
+      onLogout();
+    }
+
+    return () => stopSync();
+  }, [loginUser, location.pathname, itemRepository]);
 
   return (
     <>
@@ -114,7 +118,7 @@ const App = ({ FileInput, authService, itemRepository }) => {
         <Route exact path="/account/complete">
           <Complete />
         </Route>
-        <Route path={["*", "not-found"]}>
+        <Route path={["*", "/not-found"]}>
           <NotFound logoutHandler={onLogout} />
         </Route>
       </Switch>
