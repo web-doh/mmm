@@ -20,9 +20,9 @@ const port = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors());
-app.use(logger("dev"));
+app.use(logger("dev")); // 로그를 효과적으로 남기도록 도와줌
 app.use(json());
-app.use(urlencoded({ extended: false }));
+app.use(urlencoded({ extended: false })); // 중첩 객체 파싱 x
 
 app.use(express.static("public/build"));
 
@@ -32,11 +32,17 @@ app.get("/account/complete", (req, res) => {
   res.redirect("/not-found");
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "..", "..", "public", "build", "index.html")
-  );
-});
+if (app.get("env") === "development") {
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "..", "public", "index.html"));
+  });
+} else {
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "..", "..", "public", "build", "index.html")
+    );
+  });
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

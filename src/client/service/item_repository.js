@@ -1,7 +1,7 @@
 import axios from "axios";
 import { setTokenToHeader } from "../lib";
 
-axios.defaults.baseURL = "https://my-materials-manager.herokuapp.com";
+axios.defaults.baseURL = process.env.REACT_APP_PROD_URI;
 
 export default class ItemRepository {
   /* Get Items List */
