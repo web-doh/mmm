@@ -5,7 +5,6 @@ import styles from "./navbar.module.css";
 import Popup from "../popup/popup";
 
 const Navbar = ({ isOpen, onOpenHandler, logoutHandler }) => {
-  const history = useHistory();
   const location = useLocation().pathname.replace("/", "");
   const [isPopup, setIsPopup] = useState(false);
   const username = localStorage.getItem("username");
@@ -20,7 +19,6 @@ const Navbar = ({ isOpen, onOpenHandler, logoutHandler }) => {
   };
   const onLogout = () => {
     logoutHandler();
-    history.push("/");
   };
   const onCancel = () => {
     setIsPopup(false);

@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import {
+  Redirect,
+  Route,
+  Switch,
+  useLocation,
+  useHistory,
+} from "react-router-dom";
 import styles from "./app.module.css";
 import Complete from "./pages/accounts/complete/complete";
 import Login from "./pages/accounts/login/login";
@@ -15,6 +21,7 @@ import Search from "./pages/search/search";
 import Favorites from "./pages/favorites/favorites";
 
 const App = ({ FileInput, authService, itemRepository }) => {
+  const history = useHistory();
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useRecoilState(itemsState);
@@ -23,6 +30,7 @@ const App = ({ FileInput, authService, itemRepository }) => {
 
   const onLogout = useCallback(() => {
     authService.logout();
+    history.push("/");
   }, [authService]);
 
   const likeItem = useCallback(
@@ -67,7 +75,7 @@ const App = ({ FileInput, authService, itemRepository }) => {
     );
     setIsLoading(false);
 
-    if (!stopSync) {
+    if (stopSync.data && stopSync.data.success === false) {
       onLogout();
     }
 
