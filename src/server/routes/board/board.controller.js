@@ -22,8 +22,7 @@ const errorGenerator = (res, error, code, statusCode) => {
 */
 export const sendInitialItems = async (req, res) => {
   const { userId } = req.params;
-  const items = await Item.find({ user: userId });
-
+  const items = await Item.find({ user: userId }).sort({ date: -1 });
   respond(res, items);
 };
 
@@ -43,7 +42,8 @@ export const sendInitialItems = async (req, res) => {
       project,
       remarks,
       file,
-      isLiked
+      isLiked,
+      date
   }
 
   ERROR CODES
@@ -72,6 +72,7 @@ export const saveItem = async (req, res) => {
 */
 export const editItem = async (req, res) => {
   const update = req.body.contents;
+  update.date.edited = Date.now();
 
   try {
     // Check item id validity
