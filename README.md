@@ -4,7 +4,7 @@
 
 ## 1. Introduction
 
-**My Materials Manager, MMM**은 인테리어 디자이너가 프로젝트에 사용하거나 알아본 자재들을 편리하게 관리할 수 있는 웹 어플리케이션입니다. 카드 형태로 자재를 저장하면 board에서 타입 별로 찾아볼 수 있습니다. 아이템은 pdf 형식으로 다운받을 수 있고, 즐겨찾기한 목록을 따로 모아보거나 원하는 검색 키워드로 관련 자재를 찾을 수 있습니다.
+**My Materials Manager, MMM**은 인테리어 디자이너가 프로젝트에 사용한 자재들을 아카이빙하는 웹 어플리케이션입니다. 카드 형태로 자재를 저장하면 타입 별로 분류되어 쉽게 찾아볼 수 있습니다. 아이템은 pdf 형식으로 다운받을 수 있고, 즐겨찾기한 목록을 따로 모아보거나 검색해서 자재를 찾을 수 있습니다.
 
 ### 프로젝트 기간
 
@@ -62,7 +62,7 @@
 - Client: Netlify(https://my-materials-manager.netlify.app)
 - Server: Heroku(https://my-materials-manager.herokuapp.com/)
 
-## 4. Installation
+## 5. Installation
 
 1. git을 클론합니다.
 
@@ -78,7 +78,7 @@ MONGODB_URI=<mongoDB-connection-string>
 JWT_SECRET_KEY=<jwt-secret-key>
 ```
 
-## 5. 프로젝트 관리 툴
+## 6. 프로젝트 관리 툴
 
 - 와이어프레임 설계 : Figma (Contra wireframe kit 응용)
   ![wireframe](./readme_assets/figma.png)
@@ -87,7 +87,7 @@ JWT_SECRET_KEY=<jwt-secret-key>
 
 - 코드 버전 관리 : Git / Github Desktop
 
-## 6. Challenges
+## 7. Challenges
 
 본 프로젝트를 진행하면서 겪었던 기술적 어려움들은 아래와 같습니다.
 
@@ -99,17 +99,16 @@ JWT_SECRET_KEY=<jwt-secret-key>
 
 - 실제로 프로젝트를 진행한 것은 한 달 남짓이지만 6개월 전부터 앱 구상을 했습니다. 하지만 그 당시에는 프로그래밍을 접한지 얼마되지 않았던 때라 서버와 클라이언트 간의 통신이 어떻게 이루어지는지 알지 못했습니다. HTTP와 네트워크에 관한 책을 읽고, 그룹 프로젝트인 '부모는 처음이라'를 진행해 보면서 대략적인 관계를 머릿속에 그릴 수 있었습니다. 이번 프로젝트에서 API 작성과 AJAX 통신을 스스로 구현해 보면서 관계에 대해 조금 더 명확하게 파악할 수 있게 되었습니다.
 
-## 7. Things to do
+## 8. Things to do
 
 서버와 프런트까지 처음으로 진행한 프로젝트이다보니 간단한 웹 어플리케이션이지만 예상보다 기간이 오래 걸렸습니다. 아직 부족하다고 생각하는 점이 많아 조금씩 수정할 예정입니다.
 
 ### 1) 추가하고자 하는 기능
 
+- 아이템을 가격 순, 등록날짜 순 등으로 정렬하기
 - My page : 계정을 관리하고, 탈퇴하는 기능
 - Social login : 네이버, 카카오 계정 연동
 - 아이템 카드 공유하기 기능
-- 아이템을 이름 순, 가격 순 등으로 정렬하기 혹은 drag-and-drop 배치
-- shift 누르고 선택시 한번에 삭제
 - item price input 칸에 환전 API 적용해서 현재 환율로 변환한 가격 보여주기
 
 ### 2) 개선점
