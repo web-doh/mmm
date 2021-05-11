@@ -1,7 +1,11 @@
 import axios from "axios";
 import { setTokenToHeader } from "../lib";
 
-axios.defaults.baseURL = process.env.REACT_APP_PROD_URI;
+if (process.env.NODE_ENV === "development") {
+  axios.defaults.baseURL = process.env.REACT_APP_DEV_URI;
+} else {
+  axios.defaults.baseURL = process.env.REACT_APP_PROD_URI;
+}
 
 export default class ItemRepository {
   /* Get Items List */

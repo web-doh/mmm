@@ -1,7 +1,11 @@
 import axios from "axios";
 import { loginState } from "../atoms/atoms";
 
-axios.defaults.baseURL = process.env.REACT_APP_PROD_URI;
+if (process.env.NODE_ENV === "development") {
+  axios.defaults.baseURL = process.env.REACT_APP_DEV_URI;
+} else {
+  axios.defaults.baseURL = process.env.REACT_APP_PROD_URI;
+}
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 
 /* Register */
