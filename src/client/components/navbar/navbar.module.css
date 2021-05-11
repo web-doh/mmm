@@ -3,13 +3,13 @@
 
 .background {
   display: none;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
   background-color: makerBack;
-  z-index: 50;
+  z-index: 100;
 }
 
 .show {

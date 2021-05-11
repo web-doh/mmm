@@ -4,7 +4,6 @@
 .container {
   width: 100%;
   height: 100%;
-  display: flex;
   flex-direction: column;
 }
 
@@ -68,7 +67,7 @@
   align-items: flex-start;
 }
 
-.container {
+.content {
   height: 100%;
   flex-basis: 48.5%;
 }

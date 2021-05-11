@@ -22,6 +22,7 @@
   border-radius: borderRadius;
   display: flex;
   flex-direction: column;
+  justify-content: inherit;
   background-color: makerWhite;
 }
 

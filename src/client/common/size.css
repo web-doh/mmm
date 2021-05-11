@@ -25,7 +25,7 @@
 @value sizeLarge: 1.25rem;
 
 /* border radius */
-@value borderRadius: 16px;
+@value borderRadius: 1rem;
 
 /* media query */
 @value mediaQuery: 768px;

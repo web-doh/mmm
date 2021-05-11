@@ -17,7 +17,7 @@ const UpButton = (props) => {
   };
 
   useEffect(() => {
-    return window.addEventListener("scroll", checkScrollTop);
+    window.addEventListener("scroll", checkScrollTop);
   }, [window.scrollY]);
 
   return (

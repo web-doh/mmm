@@ -1,0 +1,53 @@
+@value makerBlack, makerYellow, makerSmallShadow from '../../common/colors.css';
+@value sizeSmall, sizeRegular, fontTiny, fontMedium, fontBig, weightBold, borderRadius, mediaQuery from '../../common/size.css';
+
+.button {
+  height: fontBig;
+  padding: 0 sizeRegular;
+  border: 2px solid makerBlack;
+  border-radius: borderRadius;
+  background-color: makerYellow;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 8.5rem;
+  box-shadow: makerSmallShadow;
+  transition: all 150ms linear;
+}
+
+.button svg {
+  width: fontTiny;
+  stroke-width: 3px;
+  margin-right: sizeSmall;
+}
+
+.button:hover,
+.content:hover {
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.02);
+}
+
+.content {
+  font-weight: weightBold;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .button {
+    width: fontBig;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .button svg {
+    margin: 0 auto;
+    width: fontMedium;
+    height: fontMedium;
+  }
+
+  .content {
+    display: none;
+  }
+}

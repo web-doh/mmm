@@ -1,16 +1,17 @@
-@value sizeSmall, sizeRegular, fontRegular, weightBold, borderRadius from '../../common/size.css';
+@value sizeSmall, sizeRegular, fontRegular, weightBold, borderRadius, mediaMobile from '../../common/size.css';
 @value makerBlack, makerPurple, makerLightPurple from '../../common/colors.css';
 
 .container {
-  width: 4.5rem;
-  height: 2rem;
-  margin: 0 -0.35rem;
+  min-width: 4.5rem;
+  height: 2.1rem;
+  margin: 0 -0.25rem;
   border: 2px solid makerBlack;
   border-bottom: none;
   border-radius: borderRadius borderRadius 0 0;
   background-color: makerLightPurple;
   display: flex;
   justify-content: center;
+  transform: rotateX(180deg);
   transition: all 150ms ease-in-out;
 }
 

@@ -1,12 +1,18 @@
-@value sizeLarge from '../../common/size.css';
+@value sizeLarge, mediaMobile from '../../common/size.css';
 @value makerBlack from '../../common/colors.css';
 
 .container {
   width: 100%;
-  height: 3rem;
+  height: 4rem;
   margin: sizeLarge 0 calc(sizeLarge * 2);
-  border-bottom: 4px solid makerBlack;
+  border-top: 4px solid makerBlack;
   display: flex;
-  align-items: flex-end;
-  overflow: wrap;
+  align-items: flex-start;
+  transform: rotateX(180deg);
+  overflow-x: auto;
+}
+
+.container::-webkit-scrollbar {
+  height: 0.75rem;
+  z-index: 99;
 }

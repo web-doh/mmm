@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { X } from "react-feather";
 import styles from "./navbar.module.css";
@@ -25,6 +25,18 @@ const Navbar = ({ isOpen, onOpenHandler, logoutHandler }) => {
   };
 
   const preventEvent = useCallback((e) => e.stopPropagation());
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.cssText = "overflow:hidden";
+
+      return () => {
+        document.body.style.cssText = "overflow: auto";
+      };
+    }
+
+    return;
+  }, [isOpen]);
 
   const confirmPopup = {
     title: "Are you sure",

@@ -88,7 +88,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
         <CancelButton />
       </header>
       <section className={styles.contents}>
-        <section className={`${styles.container} ${styles.images}`}>
+        <section className={`${styles.content} ${styles.images}`}>
           <div
             className={`${styles.image} ${styles.mainImage} ${
               file[0].url && styles.noBack
@@ -123,7 +123,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
             )}
           </div>
         </section>
-        <section className={`${styles.container} ${styles.right}`}>
+        <section className={`${styles.content} ${styles.right}`}>
           <ul className={styles.list}>
             {description.map((key) => (
               <li key={key} className={styles.listItem}>
