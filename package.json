@@ -31,7 +31,6 @@
     "html2canvas": "^1.0.0-rc.7",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
-    "jspdf": "^2.3.1",
     "mongoose": "^5.11.18",
     "morgan": "~1.9.1",
     "path": "^0.12.7",

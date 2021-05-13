@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 8.5rem;
+  top: -2.6rem;
   box-shadow: makerSmallShadow;
   transition: all 150ms linear;
 }

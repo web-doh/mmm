@@ -16,10 +16,14 @@
       href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap"
       rel="stylesheet"
     />
+
     <title>MMM</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      if (!crossOriginIsolated) SharedArrayBuffer = ArrayBuffer;
+    </script>
   </body>
 </html>
