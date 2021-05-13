@@ -1,0 +1,31 @@
+@value fontSmall, weightMedium from '../../common/size.css';
+@value makerRed from '../../common/colors.css';
+
+.container {
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.container:first-child {
+  padding-top: 1.25rem;
+}
+
+.container:last-child {
+  padding-bottom: 1.25rem;
+}
+
+.name {
+  font-size: fontSmall;
+  font-weight: weightMedium;
+  white-space: nowrap;
+  transition: color 150ms ease-in-out;
+}
+
+.name:hover {
+  color: makerRed;
+  cursor: pointer;
+}
+
+.selected {
+  color: makerRed;
+}

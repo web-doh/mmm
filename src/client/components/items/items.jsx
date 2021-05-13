@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { itemFilterState } from "../../atoms/atoms";
 import Item from "../item/item";
-import ItemMaker from "../item_maker/item_maker";
 import ItemSkeleton from "../skeleton/item_skeleton";
+import Sort from "../sort/sort";
 import styles from "./items.module.css";
 
 const Items = ({ items, likeItem, isLoading }) => {
@@ -27,9 +27,11 @@ const Items = ({ items, likeItem, isLoading }) => {
     if (items.length && items[0]["name"]) {
       return (
         <ul className={styles.container}>
-          {items.map((item) => (
-            <Item key={item._id} item={item} likeItem={likeItem} />
-          ))}
+          <Sort>
+            {items.map((item) => (
+              <Item key={item._id} item={item} likeItem={likeItem} />
+            ))}
+          </Sort>
         </ul>
       );
     } else {

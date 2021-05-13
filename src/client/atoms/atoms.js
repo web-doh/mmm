@@ -1,5 +1,10 @@
 import { atom, selector } from "recoil";
 
+export const sortOptionState = atom({
+  key: "sortOptionState",
+  default: "date-reverse",
+});
+
 export const itemsState = atom({
   key: "itemsState",
   default: [
@@ -17,6 +22,7 @@ export const itemsState = atom({
       remarks: "",
       file: [{ url: "" }, { url: "" }, { url: "" }],
       isLiked: false,
+      date: "",
     },
   ],
 });

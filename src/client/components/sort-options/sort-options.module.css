@@ -1,0 +1,69 @@
+@value sizeSmall, sizeRegular, weightMedium, borderRadius from '../../common/size.css';
+@value makerWhite, makerBlack, makerRed, makerShadow, makerSmallShadow from '../../common/colors.css';
+
+.container {
+  padding: sizeRegular;
+  position: relative;
+  top: -2rem;
+  text-align: right;
+}
+
+.current {
+  display: flex;
+  align-items: center;
+}
+
+.current__name {
+  font-weight: weightMedium;
+  margin-right: sizeSmall;
+}
+
+.selected {
+  color: makerRed;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+}
+
+.button svg {
+  stroke-width: 2px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button__flip {
+  transform: rotate(180deg);
+}
+
+.options {
+  display: none;
+  position: absolute;
+  right: sizeSmall;
+  top: 2.75rem;
+  background-color: makerWhite;
+  border: 2px solid makerBlack;
+  border-radius: calc(borderRadius/2);
+  box-shadow: makerSmallShadow;
+  z-index: 99;
+}
+
+.options::before {
+  content: "";
+  width: sizeRegular;
+  height: sizeRegular;
+  background-color: makerWhite;
+  position: absolute;
+  top: -0.425rem;
+  right: 1rem;
+  transform: rotate(45deg);
+  border-top: 2px solid makerBlack;
+  border-left: 2px solid makerBlack;
+}
+
+.open {
+  display: block;
+}

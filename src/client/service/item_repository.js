@@ -16,7 +16,14 @@ export default class ItemRepository {
     try {
       const response = await axios.get(`/api/board/${userId}`);
 
-      const initialItems = response.data.items || [];
+      let initialItems = response.data.items || [];
+      if (initialItems.length) {
+        initialItems = initialItems.map((item) => ({
+          ...item,
+          date: this.#convertDateToNum(item.date.created),
+        }));
+      }
+
       onUpdate(initialItems);
 
       return () => {
@@ -25,6 +32,10 @@ export default class ItemRepository {
     } catch (err) {
       return err.response || err;
     }
+  };
+
+  #convertDateToNum = (date) => {
+    return date.replace(/[\.\:\-A-Z]/gi, "") * 1;
   };
 
   /* Save Item */

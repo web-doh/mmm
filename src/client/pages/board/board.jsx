@@ -4,10 +4,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { itemsState, filteredItemsState } from "../../atoms/atoms";
 import Header from "../../components/header/header";
 import Items from "../../components/items/items";
-import TabBar from "../../components/tab_bar/tab_bar";
 import Template from "../../components/template/template";
 import styles from "./board.module.css";
 import AddButton from "../../components/button/add_button";
+import FilterBar from "../../components/filter_bar/filter_bar";
 
 const Board = ({ likeItem, isLoading, logoutHandler }) => {
   const location = useLocation();
@@ -26,21 +26,21 @@ const Board = ({ likeItem, isLoading, logoutHandler }) => {
     <Items items={filtered} likeItem={likeItem} isLoading={isLoading} />
   );
 
-  const tabBar = useCallback(() => {
+  const filterBar = useCallback(() => {
     return (
-      <aside className={styles.tabBar}>
+      <aside className={styles.filterBar}>
         <AddButton onClickHandler={onClickHandler} />
-        <TabBar items={items} isLoading={isLoading} />
+        <FilterBar items={items} isLoading={isLoading} />
       </aside>
     );
-  }, [TabBar, items]);
+  }, [FilterBar, items]);
 
   return (
     <>
       <Template
         title="Board"
         Contents={contents}
-        Aside={tabBar}
+        Aside={filterBar}
         logoutHandler={logoutHandler}
       />
     </>
