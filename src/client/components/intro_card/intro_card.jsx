@@ -1,5 +1,4 @@
 import React, { memo } from "react";
-import { ChevronRight } from "react-feather";
 import styles from "./intro_card.module.css";
 
 const IntroCard = memo(({ contents: { description, color, image } }) => {

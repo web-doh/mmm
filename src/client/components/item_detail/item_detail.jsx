@@ -1,14 +1,11 @@
-import React, { useCallback, useState } from "react";
-import { Send, Image } from "react-feather";
-import { useParams, useHistory } from "react-router";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { itemsState } from "../../atoms/atoms";
+import React, { useState } from "react";
+import { Image } from "react-feather";
+import { useHistory } from "react-router";
+
 import NotFound from "../../pages/not_found/not_found";
 import CancelButton from "../button/cancel_button";
-import LinkButton from "../button/link_button";
 import SaveButton from "../button/save_button";
 import StarButton from "../button/star_button";
-import SubmitButton from "../button/submit_button";
 import Popup from "../popup/popup";
 import styles from "./item_detail.module.css";
 
@@ -21,21 +18,7 @@ const ItemDetail = ({ item, onChangeModal, deleteItem, likeItem }) => {
     return <NotFound />;
   }
 
-  const {
-    _id,
-    name,
-    type,
-    size,
-    price,
-    manufacture,
-    seller,
-    contact,
-    email,
-    project,
-    remarks,
-    file,
-    isLiked,
-  } = item;
+  const { _id, name, file, isLiked } = item;
 
   const description = [
     "type",
