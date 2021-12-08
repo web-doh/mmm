@@ -33,6 +33,7 @@
 
 .logo {
   width: 15rem;
+  height: 15rem;
 }
 
 .title b {
@@ -46,5 +47,6 @@
 
   .logo {
     width: 12.5rem;
+    height: 12.5rem;
   }
 }
