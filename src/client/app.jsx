@@ -82,6 +82,17 @@ const App = ({ FileInput, authService, itemRepository }) => {
     return () => stopSync();
   }, [loginUser, location.pathname, itemRepository]);
 
+  useEffect(() => {
+    WebpIsSupported((isSupportWebP) => {
+      const html = document.querySelector("html");
+      if (!isSupportWebP) {
+        html.classList.add("no-webp");
+      } else {
+        html.classList.add("webp");
+      }
+    });
+  }, []);
+
   return (
     <>
       <Suspense fallback={<div></div>}>

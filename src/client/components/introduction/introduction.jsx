@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./introduction.module.css";
+import ImgWithFallback from "../img_with_fallback/img_with_fallback";
 
 const Introduction = ({
-  contents: { id, title, description, image, isVisible },
+  contents: { id, title, description, image, imageWebp, isVisible },
 }) => {
   return (
     <li className={isVisible ? undefined : styles.invisible}>
@@ -13,7 +14,12 @@ const Introduction = ({
           <p>{description}</p>
         </div>
       </header>
-      <img src={image} className={styles.image} alt="introductions image" />
+      <ImgWithFallback
+        src={imageWebp}
+        fallback={image}
+        className={styles.image}
+        alt="introductions image"
+      />
     </li>
   );
 };
