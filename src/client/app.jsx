@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { itemsState } from "./atoms/atoms";
+import { WebpIsSupported } from "./lib/browser";
 
 const Complete = lazy(() => import("./pages/accounts/complete/complete"));
 const Login = lazy(() => import("./pages/accounts/login/login"));

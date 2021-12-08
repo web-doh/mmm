@@ -1,0 +1,8 @@
+html,
+.no-webp {
+  background: left top / cover url("./assets/back.png");
+}
+
+.webp {
+  background: left top / cover url("./assets/back.webp");
+}

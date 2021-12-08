@@ -1,4 +1,4 @@
-export default WebpIsSupported = (cb) => {
+export const WebpIsSupported = (cb) => {
   if (!window.createImageBitmap) {
     cb(false);
     return;

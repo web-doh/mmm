@@ -3,9 +3,6 @@ import webpack from "webpack";
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const ImageminWebP = require("imagemin-webp");
-const ImageminPlugin = require("imagemin-webpack-plugin").default;
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 function getClientEnv() {
   return {
@@ -67,7 +64,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|webp)$/i,
         use: [
           {
             loader: "file-loader",
@@ -99,18 +96,6 @@ module.exports = {
 
     new MiniCssExtractPlugin(),
     new webpack.DefinePlugin(clientEnv),
-
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: "./src/client/assets/**/**",
-          to: "./src/client/assets/[name].webp",
-        },
-      ],
-    }),
-    new ImageminPlugin({
-      plugins: [ImageminWebP({ quality: 80 })],
-    }),
   ],
 
   stats: {

@@ -3,14 +3,6 @@
 @value makerWhite, makerLightBack from './common/colors.css';
 @value mediaMobile from './common/size.css';
 
-.no-webp {
-  background: left top / cover url("./assets/back.png");
-}
-
-.webp {
-  background: left top / cover url("./assets/back.webp");
-}
-
 body {
   background-color: makerWhite;
   max-width: 1200px;

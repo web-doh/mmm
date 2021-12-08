@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { useRecoilValue } from "recoil";
 import { likedItemsState, filteredLikedState } from "../../atoms/atoms";
 import { Plus } from "react-feather";
