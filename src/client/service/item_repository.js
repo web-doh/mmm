@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setTokenToHeader } from "../lib";
+import { setTokenToHeader } from "../lib/token.js";
 
 if (process.env.NODE_ENV === "development") {
   axios.defaults.baseURL = process.env.REACT_APP_DEV_URI;

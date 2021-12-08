@@ -6,7 +6,8 @@ import {
   useLocation,
   useHistory,
 } from "react-router-dom";
-import styles from "./app.module.css";
+import { useRecoilState } from "recoil";
+import { itemsState } from "./atoms/atoms";
 import Complete from "./pages/accounts/complete/complete";
 import Login from "./pages/accounts/login/login";
 import Signup from "./pages/accounts/signup/signup";
@@ -14,8 +15,6 @@ import Board from "./pages/board/board";
 import Home from "./pages/home/home";
 import NotFound from "./pages/not_found/not_found";
 import PrivateRoute from "./components/routes/private_route";
-import { useRecoilState } from "recoil";
-import { itemsState } from "./atoms/atoms";
 import ItemIndex from "./pages/board/item_index/item_index";
 import Search from "./pages/search/search";
 import Favorites from "./pages/favorites/favorites";

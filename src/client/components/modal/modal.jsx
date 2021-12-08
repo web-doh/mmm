@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import CancelButton from "../button/cancel_button";
-import Popup from "../popup/popup";
 import styles from "./modal.module.css";
+import Popup from "../popup/popup";
 
 const Modal = ({ isPopup, Content }) => {
   const history = useHistory();
@@ -14,9 +13,14 @@ const Modal = ({ isPopup, Content }) => {
   const onCancel = useCallback(() => {
     setConfirm(false);
   }, []);
-  const clickHandler = useCallback(() => {
-    isPopup ? setConfirm(true) : onClose();
-  }, [isPopup]);
+  const clickHandler = useCallback(
+    (e) => {
+      if (e.target === e.currentTarget) {
+        isPopup ? setConfirm(true) : onClose();
+      }
+    },
+    [isPopup]
+  );
 
   const confirmPopup = {
     title: "Are you sure",
@@ -26,8 +30,6 @@ const Modal = ({ isPopup, Content }) => {
       { id: "confirm", name: "Confirm", clickHandler: onClose },
     ],
   };
-
-  const preventEvent = useCallback((e) => e.stopPropagation(), []);
 
   useEffect(() => {
     document.body.style.cssText = "overflow:hidden";
@@ -39,7 +41,7 @@ const Modal = ({ isPopup, Content }) => {
 
   return (
     <div className={styles.background} onClick={clickHandler}>
-      <section className={styles.container} onClick={preventEvent}>
+      <section className={styles.container}>
         <Content />
         {confirm && <Popup contents={confirmPopup} />}
       </section>
