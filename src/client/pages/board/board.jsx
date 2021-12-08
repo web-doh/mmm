@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react";
 import { useHistory, useLocation } from "react-router";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { itemsState, filteredItemsState } from "../../atoms/atoms";
-import Header from "../../components/header/header";
+
 import Items from "../../components/items/items";
 import Template from "../../components/template/template";
 import styles from "./board.module.css";

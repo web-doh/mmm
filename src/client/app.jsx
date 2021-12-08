@@ -84,7 +84,7 @@ const App = ({ FileInput, authService, itemRepository }) => {
 
   return (
     <>
-      <Suspense fallback={<div>Hello! Just wait a minute.</div>}>
+      <Suspense fallback={<div></div>}>
         <Switch location={background || location}>
           <Route exact path={["/", "/home"]}>
             <Home />
