@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import {
   Redirect,
   Route,
@@ -8,16 +8,17 @@ import {
 } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { itemsState } from "./atoms/atoms";
-import Complete from "./pages/accounts/complete/complete";
-import Login from "./pages/accounts/login/login";
-import Signup from "./pages/accounts/signup/signup";
-import Board from "./pages/board/board";
-import Home from "./pages/home/home";
-import NotFound from "./pages/not_found/not_found";
-import PrivateRoute from "./components/routes/private_route";
-import ItemIndex from "./pages/board/item_index/item_index";
-import Search from "./pages/search/search";
-import Favorites from "./pages/favorites/favorites";
+
+const Complete = lazy(() => import("./pages/accounts/complete/complete"));
+const Login = lazy(() => import("./pages/accounts/login/login"));
+const Signup = lazy(() => import("./pages/accounts/signup/signup"));
+const Board = lazy(() => import("./pages/board/board"));
+const Home = lazy(() => import("./pages/home/home"));
+const NotFound = lazy(() => import("./pages/not_found/not_found"));
+const ItemIndex = lazy(() => import("./pages/board/item_index/item_index"));
+const Search = lazy(() => import("./pages/search/search"));
+const Favorites = lazy(() => import("./pages/favorites/favorites"));
+const PrivateRoute = lazy(() => import("./components/routes/private_route"));
 
 const App = ({ FileInput, authService, itemRepository }) => {
   const history = useHistory();
@@ -83,66 +84,68 @@ const App = ({ FileInput, authService, itemRepository }) => {
 
   return (
     <>
-      <Switch location={background || location}>
-        <Route exact path={["/", "/home"]}>
-          <Home />
-        </Route>
-        <PrivateRoute exact path="/search" isAuthenticated={loginUser}>
-          <Search
-            likeItem={likeItem}
-            isLoading={isLoading}
-            logoutHandler={onLogout}
-          />
-        </PrivateRoute>
-        <PrivateRoute exact path="/favorites" isAuthenticated={loginUser}>
-          <Favorites
-            likeItem={likeItem}
-            isLoading={isLoading}
-            logoutHandler={onLogout}
-          />
-        </PrivateRoute>
-        <PrivateRoute exact path="/board" isAuthenticated={loginUser}>
-          <Board
-            likeItem={likeItem}
-            isLoading={isLoading}
-            logoutHandler={onLogout}
-          />
-        </PrivateRoute>
-        <Route exact path="/account/login">
-          {!loginUser ? (
-            <Login authService={authService} />
-          ) : (
-            <Redirect to="/board" />
-          )}
-        </Route>
-        <Route exact path="/account/signup">
-          {!loginUser ? (
-            <Signup authService={authService} />
-          ) : (
-            <Redirect to="/board" />
-          )}
-        </Route>
-        <Route exact path="/account/complete">
-          <Complete />
-        </Route>
-        <Route path={["*", "/not-found"]}>
-          <NotFound logoutHandler={onLogout} />
-        </Route>
-      </Switch>
+      <Suspense fallback={<div>Hello! Just wait a minute.</div>}>
+        <Switch location={background || location}>
+          <Route exact path={["/", "/home"]}>
+            <Home />
+          </Route>
+          <PrivateRoute exact path="/search" isAuthenticated={loginUser}>
+            <Search
+              likeItem={likeItem}
+              isLoading={isLoading}
+              logoutHandler={onLogout}
+            />
+          </PrivateRoute>
+          <PrivateRoute exact path="/favorites" isAuthenticated={loginUser}>
+            <Favorites
+              likeItem={likeItem}
+              isLoading={isLoading}
+              logoutHandler={onLogout}
+            />
+          </PrivateRoute>
+          <PrivateRoute exact path="/board" isAuthenticated={loginUser}>
+            <Board
+              likeItem={likeItem}
+              isLoading={isLoading}
+              logoutHandler={onLogout}
+            />
+          </PrivateRoute>
+          <Route exact path="/account/login">
+            {!loginUser ? (
+              <Login authService={authService} />
+            ) : (
+              <Redirect to="/board" />
+            )}
+          </Route>
+          <Route exact path="/account/signup">
+            {!loginUser ? (
+              <Signup authService={authService} />
+            ) : (
+              <Redirect to="/board" />
+            )}
+          </Route>
+          <Route exact path="/account/complete">
+            <Complete />
+          </Route>
+          <Route path={["*", "/not-found"]}>
+            <NotFound />
+          </Route>
+        </Switch>
 
-      {background && (
-        <PrivateRoute
-          exact
-          path={["/board/item/:id", "/board/item"]}
-          isAuthenticated={loginUser}
-        >
-          <ItemIndex
-            itemRepository={itemRepository}
-            likeItem={likeItem}
-            FileInput={FileInput}
-          />
-        </PrivateRoute>
-      )}
+        {background && (
+          <PrivateRoute
+            exact
+            path={["/board/item/:id", "/board/item"]}
+            isAuthenticated={loginUser}
+          >
+            <ItemIndex
+              itemRepository={itemRepository}
+              likeItem={likeItem}
+              FileInput={FileInput}
+            />
+          </PrivateRoute>
+        )}
+      </Suspense>
     </>
   );
 };
