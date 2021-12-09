@@ -1,5 +1,4 @@
-import { model, Schema, Types } from "mongoose";
-import User from "../../models/user";
+import { Types } from "mongoose";
 import Item from "../../models/item";
 
 const respond = (res, items) => {
