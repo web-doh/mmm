@@ -8,7 +8,7 @@ import { useHistory, useLocation } from "react-router";
 const Item = memo(({ item, likeItem }) => {
   const history = useHistory();
   const location = useLocation();
-  const { _id, name, type, size, price, file, isLiked } = item;
+  const { _id, name, size, price, file, isLiked } = item;
 
   const onClickHandler = useCallback(() => {
     history.push({
